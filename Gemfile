@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'devise'
 gem 'simple_form'
+gem 'paperclip', '~> 3.0'
 
 group :production do
 	gem 'pg'

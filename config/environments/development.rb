@@ -37,4 +37,8 @@ Omrails::Application.configure do
 
   # Modified for devise
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # PaperClip location of ImageMagik
+  Paperclip.options[:command_path] = "/opt/ImageMagick/bin"
+
 end
