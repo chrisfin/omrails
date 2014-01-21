@@ -5,11 +5,12 @@ class PinsController < ApplicationController
   # GET /pins
   # GET /pins.json
   def index
-    @pins = Pin.order("created_at desc").page(params[:page]).per_page(20)
+    @pins = Pin.order("created_at desc").page(params[:page]).per_page(1)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @pins }
+      format.js
     end
   end
 
@@ -75,7 +76,7 @@ class PinsController < ApplicationController
   # DELETE /pins/1
   # DELETE /pins/1.json
   def destroy
-    @pin = current_user.pins.find(params[:id])
+    @pin = Pin.find(params[:id])
     @pin.destroy
 
     respond_to do |format|
