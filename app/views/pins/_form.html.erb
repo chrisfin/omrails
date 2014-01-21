@@ -7,7 +7,9 @@
 
     <%= f.input :image, label: 'Upload an Image' %>
     <%= f.input :image_remote_url, label: "or enter a URL" %>
-    <%= f.input :description, as: :text, input_html: { rows: "3"} %>
+   	<%= f.input :product_url, as: :text, input_html: { rows: "1"}  %>
+   	<%= f.input :price, as: :float %>
+   	<%= f.input :description, as: :text, input_html: { rows: "3"} %>
 
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-primary" %>
