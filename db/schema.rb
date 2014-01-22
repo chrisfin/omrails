@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140121231136) do
+ActiveRecord::Schema.define(:version => 20140122164752) do
 
   create_table "pins", :force => true do |t|
     t.string   "description"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20140121231136) do
     t.integer  "pin_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "rank"
   end
 
 end

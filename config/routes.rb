@@ -1,6 +1,7 @@
 Omrails::Application.routes.draw do
   get "users/show"
   get "views/show"
+  get "views/shop"
 
   resources :pins
   resources :views

@@ -1,0 +1,8 @@
+	<div class="well_header">Shop: Click on Any Image to Make a Purchase</div>
+	
+	<% @pins.each do |pin| %>
+  		<%= link_to (image_tag pin.image(:large)), pin.product_url, :target => "_blank" %>
+	<% end %>
+
+	
+

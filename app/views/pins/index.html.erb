@@ -1,17 +1,44 @@
 <div id="pins">
-	<%= current_user.name %>
-	<div class="well_header">Start Building Your Personal Catalog</div>
-		<%= render @pins %>
-	<div class="btn_left"> 	
-   				<%= link_to "Meh..", "#", class: "btn btn-block btn-large" %>
-	</div>
-	
-	<div class="btn_right"> 	
+	<div class="well_header">Start Building Your Personal Catalog | <%= link_to 'Shop', views_shop_path %></div>
+
+	<% if user_signed_in? %>
+		<% if @pins %>
+			<%= render @pins %>
+
+			<div class="btn_left"> 	
+   				<%= link_to 'Meh...', {:controller => "views", 
+                       :action => "create", 
+                       :rank => 0,
+                       :user_id => current_user.id, 
+                       :pin_id => @pins.id
+                       },
+                       :method => "post", class: "btn btn-block btn-large"  %>
+			
+			</div>
+			
+			<div class="btn_right"> 	
 					<%= link_to 'Yes!', {:controller => "views", 
                        :action => "create", 
+                       :rank => 1,
                        :user_id => current_user.id, 
-                       :pin_id => @pins.id},
-                       :method => "post" %>
-	</div>
+                       :pin_id => @pins.id
+                       },
+                       :method => "post", class: "btn btn-block btn-large"  %>
+			</div>
+		
+		<% else %>
+
+			
+			<div class="center_text">
+				<p>Fleur has no more images for you today. Come back tomorrow!</p>
+				<%= link_to 'Shop', views_shop_path %> 
+			</div>
+
+		<% end %>
+	<% else %>
+
+		<p>No user is signed in to Fleur.</p>
+
+	<% end %>
 
 </div>	

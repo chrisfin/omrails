@@ -5,7 +5,9 @@ class PinsController < ApplicationController
   # GET /pins
   # GET /pins.json
   def index
-    @pins = Pin.find(253)
+    views = View.user_views(current_user)
+    seen = views.map(&:pin_id) << -1
+    @pins = Pin.new_pin(seen)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,6 +47,7 @@ class PinsController < ApplicationController
   # POST /pins.json
   def create
     @pin = current_user.pins.new(params[:pin])
+    @pin.user_id = current_user.id
 
     respond_to do |format|
       if @pin.save
@@ -82,15 +85,6 @@ class PinsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to pins_url }
       format.json { head :no_content }
-    end
-  end
-def index2
-    @pins = Pin.order("created_at desc").page(params[:page]).per_page(1)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @pins }
-      format.js
     end
   end
 end

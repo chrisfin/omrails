@@ -2,11 +2,12 @@ class Pin < ActiveRecord::Base
   attr_accessible :description, :image, :image_remote_url, :product_url, :price
 
   has_attached_file :image, styles: { large: "400x400>", thumb: "100x100>"}
-  validates :user_id, presence: true
+  
   validates_attachment :image, presence: true,
                             content_type: { content_type: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'] },
                             size: { less_than: 5.megabytes }
   belongs_to :user
+  has_many :views
   has_many :users, :through => :views
   
   def image_remote_url=(url_value)
@@ -14,4 +15,12 @@ class Pin < ActiveRecord::Base
   	super
   end
   
+  def self.new_pin(pin_ids)
+      self.find(:first, :conditions => ["id not in (?)", pin_ids])
+  end
+
+  def self.user_pins(pin_ids)
+      self.find(:all, :conditions => ["id in (?)", pin_ids])
+  end
+
 end
