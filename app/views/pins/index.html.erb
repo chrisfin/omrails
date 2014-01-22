@@ -1,4 +1,5 @@
 <div id="pins">
+	<%= current_user.name %>
 	<div class="well_header">Start Building Your Personal Catalog</div>
 		<%= render @pins %>
 	<div class="btn_left"> 	
@@ -6,7 +7,11 @@
 	</div>
 	
 	<div class="btn_right"> 	
-					<%= link_to "Yes!", "#", class: "btn btn-block btn-large" %>
+					<%= link_to 'Yes!', {:controller => "views", 
+                       :action => "create", 
+                       :user_id => current_user.id, 
+                       :pin_id => @pins.id},
+                       :method => "post" %>
 	</div>
 
 </div>	

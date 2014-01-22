@@ -4,4 +4,5 @@ class UsersController < ApplicationController
  	@pins = @user.pins.order("created_at desc").page(params[:page]).per_page(20)
 
   end
+
 end
