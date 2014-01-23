@@ -1,8 +1,24 @@
-<h1><%= @user.name %></h1>
+<h1>Items Posted By: <%= @user.name %> <%= link_to "Add an Item", new_pin_path %></h1>
 
 <div id="pins">
-	<%= render @pins %>
-	
+	<div class="row">
+   		<div class="manage_item">
+   			<% @pins.each do |pin| %>	
+          <table class="manage_table">
+            <tr>
+              <td rowspan="5"><%= link_to (image_tag pin.image(:thumb)), pin.product_url, :target => "_blank" %></td>
+              <td>$<%= number_with_precision( pin.price, precision: 2) %> </td>
+    			   </tr>
+            <tr><td><%= pin.item_type %></td></tr>
+            <tr><td><%= pin.brand %></td></tr>
+            <tr><td><%= pin.active %></td></tr>
+            <tr><td><%= link_to "Edit", controller: "pins", action: "edit", id: pin.id %></td></tr>
+          </table>
+  		
+    			</br>
+  			<% end %>		
+  		</div>
+	</div>	
 </div>	
 
 <%= will_paginate @pins %>

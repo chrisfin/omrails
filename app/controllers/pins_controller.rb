@@ -64,10 +64,11 @@ class PinsController < ApplicationController
   # PUT /pins/1.json
   def update
     @pin = current_user.pins.find(params[:id])
+    @user = current_user
 
     respond_to do |format|
       if @pin.update_attributes(params[:pin])
-        format.html { redirect_to @pin, notice: 'Pin was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Pin was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

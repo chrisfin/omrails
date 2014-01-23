@@ -1,15 +1,21 @@
 <div class="row">
-	<div class="span6 offset3">
-		<div class="well">
-			<%= link_to (image_tag @pin.image(:large)), @pin.product_url, :target => "_blank" %>	
-			<p>
-			  <%= @pin.description %>
-			  $<%= number_with_precision(@pin.price, precision: 2) %>
-			</p>
-			
-
-		<%= link_to 'Back', pins_path %>
-		</div>
-	</div>
+  <div class="span6 offset3">
+    <div class="well">
+      <%= link_to (image_tag @pin.image(:large)), @pin.product_url, :target => "_blank" %>  
+      <p>
+        $<%= number_with_precision(@pin.price, precision: 2) %>
+      </p>
+      <p>
+      <%= @pin.brand %>
+    </p>
+     <p>
+      <%= @pin.item_type %>
+    </p>
+    <p>
+      <%= @pin.active %>
+    </p>
+    <%= link_to 'Back', pins_path %>
+    </div>
+  </div>
 </div>
 

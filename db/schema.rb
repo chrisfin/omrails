@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140122164752) do
+ActiveRecord::Schema.define(:version => 20140123211110) do
 
   create_table "pins", :force => true do |t|
     t.string   "description"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(:version => 20140122164752) do
     t.string   "image_remote_url"
     t.float    "price"
     t.text     "product_url"
+    t.boolean  "active"
+    t.text     "brand"
+    t.text     "item_type"
   end
 
   add_index "pins", ["user_id"], :name => "index_pins_on_user_id"

@@ -5,4 +5,10 @@ class UsersController < ApplicationController
 
   end
 
+  def edit
+    @pin = current_user.pins.find(params[:id])
+
+  end
+
+
 end
