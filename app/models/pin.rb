@@ -17,7 +17,7 @@ class Pin < ActiveRecord::Base
   
   def self.new_pin(pin_ids)
       b = TRUE
-      self.find(:first, :conditions => ["active = ? AND id not in (?)", b, pin_ids])
+      self.find(:first, :conditions => ["active = ? AND id not in (?)", b, pin_ids], :order => "id desc" )
   end
 
   def self.user_pins(pin_ids)

@@ -8,6 +8,7 @@ class PinsController < ApplicationController
     views = View.user_views(current_user)
     seen = views.map(&:pin_id) << -1
     @pins = Pin.new_pin(seen)
+    @newpin = Pin.last(:order => "id desc", :limit => 1)
 
     respond_to do |format|
       format.html # index.html.erb

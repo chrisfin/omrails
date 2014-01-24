@@ -2,11 +2,12 @@
 
 	<% if user_signed_in? %>
 		<% if @pins %>
-		<div class="well_header">Build a Personal Catalog | <%= link_to 'Shop', views_shop_path %></div>
+		<div class="well_header">Build Your Personal Catalog | <%= link_to 'My Catalog', views_shop_path %></div>
 			<%= render @pins %>
-
+		<div class="row">
+		<div class="btn_well">
 			<div class="btn_left"> 	
-   				<%= link_to 'Meh...', {:controller => "views", 
+   				<%= link_to 'Less', {:controller => "views", 
                        :action => "create", 
                        :rank => 0,
                        :user_id => current_user.id, 
@@ -25,7 +26,8 @@
                        },
                        :method => "post", class: "btn btn-block btn-large"  %>
 			</div>
-		
+		</div>
+		</div>
 		<% else %>
 
 			
@@ -39,10 +41,26 @@
 		<% end %>
 	<% else %>
 
-		<div class="hero-unit">
+		<div class="row">
+			<div class="well_header">Build Your Own Personal Catalog | <%= link_to "Sign Up", new_user_registration_path %></div>
 			
-			<h2>No user is signed in to Fleur.</h2>
+			<div class="well">
+   			<%= link_to (image_tag @newpin.image(:large)), @newpin.product_url, :target => "_blank" %>	
+			</div>
+		</div>
 
+		<div class="row">
+			<div class="btn_well">
+				<div class="btn_left"> 	
+   				<%= link_to 'Less', new_user_registration_path, class: "btn btn-block btn-large"  %>
+   				<div class="center_small">(Not me... Show me something else.)</div>
+				</div>
+			
+				<div class="btn_right"> 	
+					<%= link_to 'Yes!', new_user_registration_path, class: "btn btn-block btn-large"  %>
+					<div class="center_small">(Love it! Give me more like it.)</div>
+				</div>
+			</div>
 		</div>
 
 	<% end %>
