@@ -1,0 +1,12 @@
+
+<% if current_user.try(:admin?) %>
+  <div class="well_header">Hello <%= current_user.name %>, You are an Admin</div>
+<% end %>
+
+<p>Add an Admin</p>
+
+<%= form_tag users_authenticate_path do %>
+  <label>Enter NewAdmin Password</label>
+  <%= text_field_tag :adminpass %>
+ <%= submit_tag "Submit" %>
+<% end %>

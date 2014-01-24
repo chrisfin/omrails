@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+
+	<% if current_user.try(:admin?) %>
+  	<div class="well_header">Hello <%= current_user.name %>, you are a Fleur Admin</div>
+  	<p> <%=link_to "Manage Uploaded Images", @user %> | Pins Uploaded: <%= @pins.count %> </p>
+
+	<% else %>
+		<b>Make current user a Fleur Admin</b>
+				
+		<%= form_tag pages_authenticate_path do %>
+  	<label>Enter Password</label>
+  	<%= text_field_tag :adminpass %>
+ 		<%= submit_tag "Submit" %>
+		<% end %>
+
+	<% end %>
+
+<% else %>
+
+	<div class="hero-unit"> 
+		<div class="well_header">Must be signed in to access admin panel.</div>
+	</div>
+
+<% end %>
