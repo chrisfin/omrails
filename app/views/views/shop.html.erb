@@ -1,10 +1,24 @@
-<div class="well_header">Shop: Click on Any Image to Make a Purchase | <%= link_to 'Browse', root_path %></div>
+	
+<% if @pins.count == 0 %>
+	
+	<div class="well_header"> 
+		<p>Your Catalog is Empty! Browse some items to get started.  |  
+		<%= link_to 'Browse', root_path %> </p>
+		<%= link_to image_tag("emptyroom.jpg"), root_path %> 
+
+	</div>	
+
+<% else %>
+
+	<div class="well_header">My Catalog: Click on Any Image to Make a Purchase | <%= link_to 'Browse', root_path %></div>
 	
 	<div class="shop">
 		<% @pins.each do |pin| %>
   		<%= link_to (image_tag pin.image(:large)), pin.product_url, :target => "_blank" %>
 		<% end %>
 	</div>
+
+<% end %>	
 
 	
 

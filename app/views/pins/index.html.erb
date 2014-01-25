@@ -3,38 +3,39 @@
 	<% if user_signed_in? %>
 		<% if @pins %>
 		<div class="well_header">Build Your Personal Catalog | <%= link_to 'My Catalog', views_shop_path %></div>
-			<%= render @pins %>
+			<div id="AJAX">
+				<%= render @pins %>
+			</div>
 		<div class="row">
 		<div class="btn_well">
 			<div class="btn_left"> 	
-   				<%= link_to 'Less', {:controller => "views", 
+   				<%= link_to '<i class="icon-white icon-remove"></i> Less'.html_safe, {:controller => "views", 
                        :action => "create", 
                        :rank => 0,
                        :user_id => current_user.id, 
                        :pin_id => @pins.id
                        },
-                       :method => "post", class: "btn btn-block btn-large"  %>
+                       :method => "post", class: "btn btn-block btn-danger btn-large"  %>
 			
 			</div>
 			
 			<div class="btn_right"> 	
-					<%= link_to 'Yes!', {:controller => "views", 
+					<%= link_to '<i class="icon-white icon-heart"></i> Yes!'.html_safe, {:controller => "views", 
                        :action => "create", 
                        :rank => 1,
                        :user_id => current_user.id, 
                        :pin_id => @pins.id
                        },
-                       :method => "post", class: "btn btn-block btn-large"  %>
+                       :method => "post", class: "btn btn-block btn-success btn-large" %>
+			
 			</div>
 		</div>
 		</div>
 		<% else %>
-
 			
-			<div class="center_text">
 				<div class="well_header"> 
 					<p>Fleur is out of new stuff. Come back tomorrow!  |  
-					<%= link_to 'Shop', views_shop_path, class: "btn btn-info btn-medium" %> </p>
+					<%= link_to 'Shop', views_shop_path %> </p>
 					<%= link_to image_tag("storefront.jpg"), views_shop_path %> 
 				</div>	
 				
@@ -52,12 +53,12 @@
 		<div class="row">
 			<div class="btn_well">
 				<div class="btn_left"> 	
-   				<%= link_to 'Less', new_user_registration_path, class: "btn btn-block btn-large"  %>
+   				<%= link_to '<i class="icon-white icon-remove"></i> Less'.html_safe, new_user_registration_path, class: "btn btn-block btn-danger btn-large"  %>
    				<div class="center_small">(Not me... Show me something else.)</div>
 				</div>
 			
 				<div class="btn_right"> 	
-					<%= link_to 'Yes!', new_user_registration_path, class: "btn btn-block btn-large"  %>
+					<%= link_to '<i class="icon-white icon-heart"></i> Yes!'.html_safe, new_user_registration_path, class: "btn btn-block btn-success btn-large"  %>
 					<div class="center_small">(Love it! Give me more like it.)</div>
 				</div>
 			</div>

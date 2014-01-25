@@ -10,7 +10,7 @@
    	<%= f.input :product_url, as: :text, input_html: { rows: "1"}  %>
    	<%= f.input :brand, as: :text, input_html: { rows: "1"}  %>
     <%= f.input :price, as: :float %>
-    <%= f.input :item_type, collection: 18..60  %>
+    <%= f.input :item_type, :collection => @items_types %>
    	<%= f.input :active, input_html: { checked: true } %>
 
   <div class="form-actions">

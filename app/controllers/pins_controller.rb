@@ -1,6 +1,7 @@
 class PinsController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
 
+ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dresses", "Jeans", "Pants", "Leggings", "Shorts", "Skirts", "Blazers", "Suits", "Jackets", "Swim"]
 
   # GET /pins
   # GET /pins.json
@@ -31,6 +32,7 @@ class PinsController < ApplicationController
   # GET /pins/new.json
   def new
     @pin = current_user.pins.new
+    @items_types = ITEM_TYPE_LIST
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +43,7 @@ class PinsController < ApplicationController
   # GET /pins/1/edit
   def edit
     @pin = current_user.pins.find(params[:id])
+    @items_types = ITEM_TYPE_LIST
 
   end
 
@@ -49,6 +52,7 @@ class PinsController < ApplicationController
   def create
     @pin = current_user.pins.new(params[:pin])
     @pin.user_id = current_user.id
+    @items_types = ITEM_TYPE_LIST
 
     respond_to do |format|
       if @pin.save
