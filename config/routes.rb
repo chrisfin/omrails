@@ -3,6 +3,7 @@ Omrails::Application.routes.draw do
   get "views/show"
   get "views/shop"
   post "pages/authenticate"
+  get "pins/index_refresh"
 
   resources :pins
   resources :views
