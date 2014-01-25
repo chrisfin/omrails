@@ -5,8 +5,13 @@ class PagesController < ApplicationController
   end
 
   def control
-  	@user = current_user
+  	if current_user
+    @user = current_user
   	@pins = @user.pins
+    @views = View.find(:all)
+    @users = User.find(:all)
+    end
+
   end
 
   def authenticate
@@ -18,6 +23,16 @@ class PagesController < ApplicationController
   	else	
   		redirect_to control_path, notice: 'Make admin failed. Enter correct password.'
   	end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    respond_to do |format|
+      format.html { redirect_to control_user }
+      format.json { head :no_content }
+    end
   end
    
 end

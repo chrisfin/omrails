@@ -5,6 +5,7 @@
 
   <%= f.input :name %>
   <%= f.input :email %>
+  <%= f.input :sex, :as => :radio, :collection => ["Female", "Male"], :checked => "Female" %>
   <%= f.input :password, label: "New Password", autocomplete: "off" %>
   <%= f.input :password_confirmation, label: "New Password Confirmation", autocomplete: "off" %>
   <%= f.input :current_password %>

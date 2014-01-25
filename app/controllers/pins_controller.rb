@@ -89,7 +89,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
     @pin.destroy
 
     respond_to do |format|
-      format.html { redirect_to pins_url }
+      format.html { redirect_to current_user }
       format.json { head :no_content }
     end
   end

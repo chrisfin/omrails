@@ -7,6 +7,8 @@
 
   <%= f.input :email %>
 
+  <%= f.input :sex, :as => :radio, :collection => ["Female", "Male"], :checked => "Female" %>
+
   <%= f.input :password %>
 
   <%= f.input :password_confirmation %>

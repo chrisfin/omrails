@@ -2,7 +2,7 @@ class ViewsController < ApplicationController
 
 def show
 	@views = View.order("created_at desc")
-	@user_views = View.user_views(current_user)
+	
 end
 
 def create
@@ -23,5 +23,15 @@ def shop
     seen = views.map(&:pin_id)
     @pins = Pin.user_pins(seen)
 end
+
+def destroy
+    @view = View.find(params[:id])
+    @view.destroy
+
+    respond_to do |format|
+      format.html { redirect_to views_show_path }
+      format.json { head :no_content }
+    end
+  end
 
 end
