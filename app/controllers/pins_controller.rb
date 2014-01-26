@@ -16,7 +16,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
       format.json { render json: @pins }
       format.js
     end
-  end
+  end 
 
   # GET /pins/1
   # GET /pins/1.json
@@ -73,7 +73,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
 
     respond_to do |format|
       if @pin.update_attributes(params[:pin])
-        format.html { redirect_to @user, notice: 'Pin was successfully updated.' }
+        format.html { redirect_to allpins_path, notice: 'Pin was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -89,7 +89,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
     @pin.destroy
 
     respond_to do |format|
-      format.html { redirect_to current_user }
+      format.html { redirect_to allpins_path }
       format.json { head :no_content }
     end
   end

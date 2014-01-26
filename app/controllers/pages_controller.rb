@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   def control
   	if current_user
     @user = current_user
-  	@pins = @user.pins
+  	@pins = Pin.find(:all)
     @views = View.find(:all)
     @users = User.find(:all)
     end
@@ -34,5 +34,10 @@ class PagesController < ApplicationController
       format.json { head :no_content }
     end
   end
-   
+  
+  def allpins
+    @user = current_user
+    @pins = Pin.find(:all, :order => "created_at desc")
+  end  
+
 end

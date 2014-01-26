@@ -3,6 +3,7 @@ Omrails::Application.routes.draw do
   get "views/show"
   get "views/shop"
   post "pages/authenticate"
+  get "pages/allpins"
   get "pins/index_refresh"
 
   resources :pins
@@ -16,6 +17,7 @@ Omrails::Application.routes.draw do
   get 'about' => 'pages#about'
   get 'control' => 'pages#control'
   get 'shop' => 'views#shop'
+  get 'allpins' => 'pages#allpins'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
