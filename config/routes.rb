@@ -15,6 +15,7 @@ Omrails::Application.routes.draw do
   root :to => 'pins#index' 
   get 'about' => 'pages#about'
   get 'control' => 'pages#control'
+  get 'shop' => 'views#shop'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

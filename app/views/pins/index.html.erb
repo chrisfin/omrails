@@ -3,7 +3,7 @@
 
 	<% if user_signed_in? %>
 		<% if @pins %>
-		<div class="well_header">Build Your Personal Catalog | <%= link_to 'My Catalog', views_shop_path %></div>
+		<div class="well_header">Build Your Personal Catalog | <%= link_to 'My Catalog', shop_path %></div>
 			<div id="AJAX">
 				<%= render @pins %>
 			</div>
@@ -36,7 +36,7 @@
 			
 				<div class="well_header"> 
 					<p>Fleur is out of new stuff. Come back tomorrow!  |  
-					<%= link_to 'Shop', views_shop_path %> </p>
+					<%= link_to 'My Catalog', shop_path %> </p>
 					<%= link_to image_tag("storefront.jpg"), views_shop_path %> 
 				</div>	
 				
@@ -44,7 +44,7 @@
 	<% else %>
 
 		<div class="row">
-			<div class="well_header">Build Your Own Personal Catalog | <%= link_to "Sign Up", new_user_registration_path %></div>
+			<div class="well_header">Build Your Own Personal Catalog | <%= link_to "Sign Up", new_user_registration_path %> | <%= link_to "Learn More", about_path %></div>
 			
 			<div class="well">
    			<%= link_to (image_tag @newpin.image(:large)), @newpin.product_url, :target => "_blank" %>	

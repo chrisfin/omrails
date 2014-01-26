@@ -129,7 +129,7 @@ footer a {
 
 .center_small{
 	text-align: center;
-	color: gray;
+	color: $gray;
 }
 
 .manage_item {
@@ -137,6 +137,23 @@ footer a {
     Margin-right:auto;
 }
 
+.about_head {
+	font-weight:bold;
+	font-size: 18px;
+	padding-bottom: 10px;
+	padding-top: 5px;
+	display: block;
+}
+
+.about_text {
+	width: 60%;
+	 clear:both;
+
+}
+
+.full_page{
+	width: 100%	;
+}
 
 /* Shop */
 
