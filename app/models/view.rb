@@ -13,4 +13,6 @@ class View < ActiveRecord::Base
 	def self.user_liked(user)
   	self.find(:all, :conditions => ['rank = 1 AND user_id = ?', user])
   end
+
+
 end

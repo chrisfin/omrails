@@ -10,6 +10,10 @@ class PagesController < ApplicationController
   	@pins = Pin.find(:all)
     @views = View.find(:all)
     @users = User.find(:all)
+    yes = View.find(:all, :conditions => ["rank = 1"])
+
+    @percent_yes = yes.count.to_f / @views.count.to_f * 100
+
     end
 
   end
@@ -38,6 +42,7 @@ class PagesController < ApplicationController
   def allpins
     @user = current_user
     @pins = Pin.find(:all, :order => "created_at desc")
+
   end  
 
   def mobile

@@ -8,9 +8,13 @@
             <tr>
               <td rowspan="5"><%= link_to (image_tag pin.image(:thumb)), pin.product_url, :target => "_blank" %></td>
               <td>Price: $<%= number_with_precision( pin.price, precision: 2) %> </td>
+              <td class="table_spacer">Date Added: <%= pin.created_at.to_formatted_s(:short) %></td>
     			   </tr>
-            <tr><td>Item Type: <%= pin.item_type %></td></tr>
-            <tr><td>Brand: <%= pin.brand %></td></tr>
+            <tr><td>Item Type: <%= pin.item_type %></td>
+                <td class="table_spacer">Total Views: <%= pin.views.count %></td>
+            </tr>
+            <tr><td>Brand: <%= pin.brand %></td>
+              <td class="table_spacer">% Yes: <%= number_to_percentage(number_with_precision(pin.views.find(:all, :conditions => ["rank = 1"]).count.to_f / pin.views.count.to_f * 100), precision: 0)  %></td></tr>
             <tr><td>Active: <%= pin.active %></td></tr>
             <tr><td><%= link_to "Edit", controller: "pins", action: "edit", id: pin.id %> <%= link_to "Delete", pin, method: :delete, data: {confirm: 'Are you sure'} %></td></tr>
           </table>

@@ -30,4 +30,13 @@ class Pin < ActiveRecord::Base
       self.find(:all, :conditions => ["active = ? AND id in (?)", b, pin_ids])
   end
 
+  def self.percent_yes
+      pinview = self.views
+      total = pinview.count
+      yes = pinview.find(:all, :conditions => ["rank = ?", 1]).count
+      return
+      yes / total
+    
+  end
+
 end
