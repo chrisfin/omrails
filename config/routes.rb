@@ -18,6 +18,8 @@ Omrails::Application.routes.draw do
   get 'control' => 'pages#control'
   get 'shop' => 'views#shop'
   get 'allpins' => 'pages#allpins'
+  get 'mobile' => 'pages#mobile'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

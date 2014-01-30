@@ -4,7 +4,7 @@
   		<div class="well_header">Hello <%= current_user.name %>, you are a Fleur Admin</div>
   		<p> <%=link_to "Manage Uploaded Images", allpins_path %> | Pins Uploaded: <%= @pins.count %> </p>
   		<p> Total Users: <%= @users.count %></p>
-  		<p> <%=link_to "Show Views" %> | Items Viewed: <%= @views.count %> | Views / User: <%= @views.count / @users.count %></p>
+  		<p> <%=link_to "Show Views", views_show_path %> | Items Viewed: <%= @views.count %> | Views / User: <%= @views.count / @users.count %></p>
 
 			<h3>Users</h3>
 

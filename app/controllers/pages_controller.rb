@@ -40,4 +40,8 @@ class PagesController < ApplicationController
     @pins = Pin.find(:all, :order => "created_at desc")
   end  
 
+  def mobile
+
+  end
+
 end
