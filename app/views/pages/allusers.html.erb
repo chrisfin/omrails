@@ -12,6 +12,8 @@
 				<td class="table_spacer">SEX </td>
 				<td class="table_spacer">Views</td>
 				<td class="table_spacer">%Yes</td>
+				<td class="table_spacer">Clicks</td>
+				<td class="table_spacer">% Shop</td>
 				<td class="table_spacer">Created</td>
 			</tr>
 			
@@ -22,7 +24,10 @@
 						<td class="table_spacer"><%= user.sex %> </td>
 						<td class="table_spacer"><%= user.views.count %> </td>
 						<td class="table_spacer"><%= number_to_percentage(number_with_precision(user.views.find(:all, :conditions => ["rank = 1"]).count.to_f / user.views.count.to_f * 100), precision: 0)  %>
-						<td class="table_spacer"><%= user.created_at.to_formatted_s(:short)    %> 
+						<td class="table_spacer"><%= user.clicks.count %> </td>
+						<td class="table_spacer"><%= number_to_percentage(number_with_precision(user.clicks.find(:all, :conditions => ["place = 'shop'"]).count.to_f / user.clicks.count.to_f * 100), precision: 0)  %>
+
+						<td class="table_spacer"><%= user.created_at.to_formatted_s(:short) %> 
 						</td>
 					</tr>
 				<% end %>

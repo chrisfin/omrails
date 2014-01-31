@@ -5,9 +5,11 @@ Omrails::Application.routes.draw do
   post "pages/authenticate"
   get "pages/allpins"
   get "pages/allusers"
+  get "clicks/show"
 
   resources :pins
   resources :views
+  resources :clicks
 
   devise_for :users
   match 'users/:id' => 'users#show', as: :user

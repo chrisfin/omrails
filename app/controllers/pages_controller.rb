@@ -9,10 +9,15 @@ class PagesController < ApplicationController
     @user = current_user
   	@pins = Pin.find(:all)
     @views = View.find(:all)
+    @clicks = Click.find(:all)
     @users = User.find(:all, :order => "last_sign_in_at desc")
     
     yes = View.find(:all, :conditions => ["rank = 1"]).count.to_f
     @percent_yes = yes / @views.count.to_f * 100
+
+    shop = Click.find(:all, :conditions => ["place = 'shop'"]).count.to_f
+    @percent_shop = shop / @clicks.count.to_f * 100
+
   
     end
 

@@ -6,6 +6,8 @@
   		<p> <%=link_to "Users Detail", allusers_path %> | Total Users: <%= @users.count %></p>
   		<p> <%=link_to "Views Detail", views_show_path %> | Total Views: <%= @views.count %> | Views / User: <%= @views.count / @users.count %> | % Yes: <%= number_to_percentage(number_with_precision(@percent_yes), precision: 0) %></p>
   		<p> 
+  		<p> <%=link_to "Clicks Detail", clicks_show_path %> | Total Views: <%= @clicks.count %> | Clicks / User: <%= @clicks.count / @users.count %> | % Shop: <%= number_to_percentage(number_with_precision(@percent_shop), precision: 0) %></p>
+  		<p> 
 
 
 	<% else %>

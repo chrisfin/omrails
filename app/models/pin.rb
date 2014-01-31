@@ -14,6 +14,9 @@ class Pin < ActiveRecord::Base
   belongs_to :user
   has_many :views
   has_many :users, :through => :views
+  has_many :clicks
+  has_many :users, :through => :clicks
+
   
   def image_remote_url=(url_value)
   	self.image = URI.parse(url_value) unless url_value.blank?	

@@ -14,5 +14,7 @@ class User < ActiveRecord::Base
   has_many :pins
   has_many :views
   has_many :pins, :through => :views
+  has_many :clicks
+  has_many :pins, :through => :clicks
 
 end

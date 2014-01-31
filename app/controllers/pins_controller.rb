@@ -18,6 +18,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
     end
   end 
 
+
   # GET /pins/1
   # GET /pins/1.json
   def show
@@ -42,7 +43,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
 
   # GET /pins/1/edit
   def edit
-    @pin = current_user.pins.find(params[:id])
+    @pin = Pin.find(params[:id])
     @items_types = ITEM_TYPE_LIST
 
   end
@@ -68,7 +69,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
   # PUT /pins/1
   # PUT /pins/1.json
   def update
-    @pin = current_user.pins.find(params[:id])
+    @pin = Pin.find(params[:id])
     @user = current_user
 
     respond_to do |format|
