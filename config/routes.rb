@@ -4,7 +4,7 @@ Omrails::Application.routes.draw do
   get "views/shop"
   post "pages/authenticate"
   get "pages/allpins"
-  get "pins/index_refresh"
+  get "pages/allusers"
 
   resources :pins
   resources :views
@@ -18,6 +18,7 @@ Omrails::Application.routes.draw do
   get 'control' => 'pages#control'
   get 'shop' => 'views#shop'
   get 'allpins' => 'pages#allpins'
+  get 'allusers' => 'pages#allusers'
   get 'mobile' => 'pages#mobile'
 
 

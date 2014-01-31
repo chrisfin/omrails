@@ -1,20 +1,20 @@
 <table class="manage_table">
 	<tr>
 		<td>ID </td>
-		<td>USER </td>
-		<td>PIN </td>
-		<td>RANK </td>
-		<td>Created</td>
+		<td class="table_spacer">USER </td>
+		<td class="table_spacer">PIN </td>
+		<td class="table_spacer">RANK </td>
+		<td class="table_spacer">Created</td>
 	</tr>
 	
 	<% @views.each do |view| %>
   	<tr>
 		<td><%= view.id %> </td>
-		<td><%= view.user_id %> </td>
-		<td><%= view.pin_id %> </td>
-		<td><%= view.rank %> </td>
-		<td><%= view.created_at.to_formatted_s(:short)    %> </td>
-		<td><%= link_to "Delete", view, method: :delete, data: {confirm: 'Are you sure'} %>
+		<td class="table_spacer"><%= view.user_id %> </td>
+		<td class="table_spacer"><%= view.pin_id %> </td>
+		<td class="table_spacer"><%= view.rank %> </td>
+		<td class="table_spacer"><%= view.created_at.to_formatted_s(:short)    %> </td>
+		<td class="table_spacer"><%= link_to "Delete", view, method: :delete, data: {confirm: 'Are you sure'} %>
 	</tr>
 	<% end %>
 </table>

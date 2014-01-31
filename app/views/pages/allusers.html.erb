@@ -1,0 +1,48 @@
+<% if user_signed_in? %>
+
+  <% if current_user.try(:admin?) %>
+
+
+<div class="left_header">All Users | Total: <%= @users.count %> </div>
+
+			<table class="manage_table">
+			<tr>
+				<td>ID </td>
+				<td class="table_spacer">NAME </td>
+				<td class="table_spacer">SEX </td>
+				<td class="table_spacer">Views</td>
+				<td class="table_spacer">%Yes</td>
+				<td class="table_spacer">Created</td>
+			</tr>
+			
+				<% @users.each do |user| %>
+		  		<tr>
+						<td><%= user.id %> </td>
+						<td class="table_spacer"><%= user.name %> </td>
+						<td class="table_spacer"><%= user.sex %> </td>
+						<td class="table_spacer"><%= user.views.count %> </td>
+						<td class="table_spacer"><%= number_to_percentage(number_with_precision(user.views.find(:all, :conditions => ["rank = 1"]).count.to_f / user.views.count.to_f * 100), precision: 0)  %>
+						<td class="table_spacer"><%= user.created_at.to_formatted_s(:short)    %> 
+						</td>
+					</tr>
+				<% end %>
+				</table>
+
+<% else %>
+		<b>Make current user a Fleur Admin</b>
+				
+		<%= form_tag pages_authenticate_path do %>
+  	<label>Enter Password</label>
+  	<%= password_field_tag :adminpass %>
+ 		<%= submit_tag "Submit" %>
+		<% end %>
+
+	<% end %>
+
+<% else %>
+
+	<div class="hero-unit"> 
+		<div class="well_header">Must be signed in to access admin panel.</div>
+	</div>
+
+<% end %>
