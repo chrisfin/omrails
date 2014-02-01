@@ -23,6 +23,7 @@ Omrails::Application.routes.draw do
   get 'allpins' => 'pages#allpins'
   get 'allusers' => 'pages#allusers'
   get 'mobile' => 'pages#mobile'
+  get 'pinterest' => 'pages#pinterest-1c237'
 
 
   # The priority is based upon order of creation:
