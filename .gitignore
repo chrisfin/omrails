@@ -21,3 +21,5 @@ doc/
 .idea
 /public/system
 /SampleImages
+
+/config/app_environment_variables.rb

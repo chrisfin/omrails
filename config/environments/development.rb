@@ -53,9 +53,8 @@ Omrails::Application.configure do
   domain: "shopfleur.com",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: "chris@shopfleur.co",
-  password: "Griffey1"
+  user_name: ENV['SMTP_EMAIL_USER_NAME'],
+  password: ENV['SMTP_EMAIL_PASS']
 }
-
 
 end
