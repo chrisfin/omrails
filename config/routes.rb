@@ -11,8 +11,9 @@ Omrails::Application.routes.draw do
   resources :views
   resources :clicks
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   match 'users/:id' => 'users#show', as: :user
+
 
 
   root :to => 'pins#index' 

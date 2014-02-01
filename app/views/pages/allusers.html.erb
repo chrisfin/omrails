@@ -20,7 +20,7 @@
 				<% @users.each do |user| %>
 		  		<tr>
 						<td><%= user.id %> </td>
-						<td class="table_spacer"><%= user.name %> </td>
+						<td class="table_spacer"><%= user.email %> </td>
 						<td class="table_spacer"><%= user.sex %> </td>
 						<td class="table_spacer"><%= user.views.count %> </td>
 						<td class="table_spacer"><%= number_to_percentage(number_with_precision(user.views.find(:all, :conditions => ["rank = 1"]).count.to_f / user.views.count.to_f * 100), precision: 0)  %>
