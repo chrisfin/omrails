@@ -44,7 +44,12 @@ class Pin < ActiveRecord::Base
 
   def self.all_new_pins(pin_ids)
       b = TRUE
-      self.find(:all, :conditions => ["active = ? AND id not in (?)", b, pin_ids], :order => "id desc" )
+      self.find(:all, :conditions => ["active = ? AND id not in (?)", b, pin_ids])
+  end
+
+  def self.active_pins
+    b = TRUE
+    self.find(:all, :conditions => ["active = ?", b])
   end
 
 
