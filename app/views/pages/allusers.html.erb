@@ -9,6 +9,7 @@
 			<tr>
 				<td>ID </td>
 				<td class="table_spacer">NAME </td>
+				<td class="table_spacer">EMAIL </td>
 				<td class="table_spacer">SEX </td>
 				<td class="table_spacer">Views</td>
 				<td class="table_spacer">%Yes</td>
@@ -20,6 +21,7 @@
 				<% @users.each do |user| %>
 		  		<tr>
 						<td><%= user.id %> </td>
+						<td class="table_spacer"><%= user.name %> </td>
 						<td class="table_spacer"><%= user.email %> </td>
 						<td class="table_spacer"><%= user.sex %> </td>
 						<td class="table_spacer"><%= user.views.count %> </td>
