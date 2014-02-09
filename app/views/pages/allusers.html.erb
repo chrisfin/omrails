@@ -15,7 +15,8 @@
 				<td class="table_spacer">%Yes</td>
 				<td class="table_spacer">Clicks</td>
 				<td class="table_spacer">% Shop</td>
-				<td class="table_spacer">Created</td>
+				<td class="table_spacer">User Created</td>
+				<td class="table_spacer">Last View</td>
 			</tr>
 			
 				<% @users.each do |user| %>
@@ -30,6 +31,11 @@
 						<td class="table_spacer"><%= number_to_percentage(number_with_precision(user.clicks.find(:all, :conditions => ["place = 'shop'"]).count.to_f / user.clicks.count.to_f * 100), precision: 0)  %>
 
 						<td class="table_spacer"><%= user.created_at.to_formatted_s(:short) %> 
+						
+						<% if View.last_view(user) %>
+							<td class="table_spacer"><%= View.last_view(user).created_at.to_formatted_s(:short) %> 
+						<% end %>
+
 						</td>
 					</tr>
 				<% end %>
