@@ -19,9 +19,21 @@ def create
 end
 
 def shop
-	views = View.user_liked(current_user)
+	 views = View.user_liked(current_user)
     seen = views.map(&:pin_id)
     @pins = Pin.user_pins(seen)
+
+    if params[:pricetop]
+      max_price = params[:pricetop].gsub(/[$]/, '$' => '').to_f
+      if max_price > 0
+        @pins = @pins.select { |pin| pin.price < max_price } 
+        @price_placeholder = "Items under $" + max_price.round(0).to_s
+      else
+        @price_placeholder = "Enter Price"
+      end 
+    else
+      @price_placeholder = "Enter Price"
+    end
 end
 
 def destroy

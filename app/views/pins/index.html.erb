@@ -14,17 +14,22 @@
 			</div>
 		<div class="row">
 		<div class="btn_well">
-			<div class="btn_left"> 	
-   				<%= link_to '<i class="icon-white icon-remove"></i> Less'.html_safe, {:controller => "views", 
+			<div class="btn_well_left">
+				<div class="btn_left"> 	
+   					<%= link_to '<i class="icon-white icon-remove"></i> Less'.html_safe, {:controller => "views", 
                        :action => "create", 
                        :rank => 0,
                        :user_id => current_user.id, 
                        :pin_id => @pins.id
                        },
                        :method => "post", class: "btn btn-block btn-danger btn-large"  %>
-			
+				</div>
+
+				<div class="counter">
+				</div>
 			</div>
 			
+
 			<div class="btn_right"> 	
 					<%= link_to '<i class="icon-white icon-heart"></i> Yes!'.html_safe, {:controller => "views", 
                        :action => "create", 
@@ -49,7 +54,7 @@
 	<% else %>
 
 		<div class="row">
-			<div class="well_header">Build Your Own Personal Catalog | <%= link_to "Sign Up", new_user_registration_path %> | <%= link_to "Learn More", about_path %></div>
+			<div class="well_header">Daily Fashion Playlists of Shoppable Styles | <%= link_to "Sign Up", new_user_registration_path %> | <%= link_to "Learn More", about_path %></div>
 			
 			<div class="well">
    			<%= link_to (image_tag @newpin.image(:large)), @newpin.product_url, :target => "_blank" %>	

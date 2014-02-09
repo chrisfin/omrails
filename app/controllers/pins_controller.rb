@@ -18,7 +18,6 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
     end
   end 
 
-
   # GET /pins/1
   # GET /pins/1.json
   def show

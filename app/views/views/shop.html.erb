@@ -11,6 +11,12 @@
 <% else %>
 
 	<div class="well_header">My Catalog: Click on Any Image to Make a Purchase | <%= link_to 'Browse', root_path %></div>
+				
+		<%= form_tag views_shop_path do %>
+  	Filter by Max Price: 
+  	<%= text_field_tag :pricetop, '', placeholder: @price_placeholder %>
+ 		<%= submit_tag "Filter" %>
+		<% end %>
 	
 	<div class="shop">
 		<% @pins.each do |pin| %>
