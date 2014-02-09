@@ -14,5 +14,12 @@ class View < ActiveRecord::Base
   	self.find(:all, :conditions => ['rank = 1 AND user_id = ?', user])
   end
 
+  def self.views_today(user)
+    date = Time.now
+    now = date.at_beginning_of_day
+    views = self.find(:all, :conditions => ['user_id = ? AND created_at > ?', user, now ])
+
+
+  end
 
 end

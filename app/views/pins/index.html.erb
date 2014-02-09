@@ -3,7 +3,7 @@
 
 	<% if user_signed_in? %>
 		<% if @pins %>
-		<div class="well_header">Build Your Personal Catalog | <%= link_to 'My Catalog', shop_path %></div>
+		<div class="well_header">Browse Today's Style Selection | <%= link_to 'My Catalog', shop_path %></div>
 		
 		<% if current_user.sex == "Male" %>
 			<div class="well_flash">(FYI: We only feature women's clothes right now. We're going to add a men's line soon!)</div>
@@ -26,6 +26,7 @@
 				</div>
 
 				<div class="counter">
+					<%=  @daily_counter %>
 				</div>
 			</div>
 			
@@ -54,7 +55,7 @@
 	<% else %>
 
 		<div class="row">
-			<div class="well_header">Daily Fashion Playlists of Shoppable Styles | <%= link_to "Sign Up", new_user_registration_path %> | <%= link_to "Learn More", about_path %></div>
+			<div class="well_header">Daily Playlists of Shoppable Fashion | <%= link_to "Sign Up", new_user_registration_path %> | <%= link_to "Learn More", about_path %></div>
 			
 			<div class="well">
    			<%= link_to (image_tag @newpin.image(:large)), @newpin.product_url, :target => "_blank" %>	
@@ -63,9 +64,16 @@
 
 		<div class="row">
 			<div class="btn_well">
-				<div class="btn_left"> 	
-   				<%= link_to '<i class="icon-white icon-remove"></i> Less'.html_safe, new_user_registration_path, class: "btn btn-block btn-danger btn-large"  %>
-   				<div class="center_small">(Not me... Show me something else.)</div>
+				<div class="btn_well_left">
+					<div class="btn_left"> 	
+   					<%= link_to '<i class="icon-white icon-remove"></i> Less'.html_safe, new_user_registration_path, class: "btn btn-block btn-danger btn-large"  %>
+   					<div class="center_small">(Not me... Show me something else.)</div>
+					</div>
+
+					<div class="counter">
+					30
+					</div>	
+
 				</div>
 			
 				<div class="btn_right"> 	

@@ -114,19 +114,33 @@ footer a {
 	background-color: white;
 }
 
+.btn_well_left {
+	float:left;
+}
+
 .btn_left {
 	float: left;
-	width: 250px;
+	width: 240px;
 }
 
 .counter {
 	float: right;
-		
+	border: 1px solid #e3e3e3;
+	height: 33px;
+	width: 45px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin-left: 12px;
+	font-size: 18px;
+	color: #777777;
+	padding-top: 12px;
+	text-align:center;
+
 }
 
 .btn_right {
 	float: right;
-	width: 250px;
+	width: 240px;
 }
 
 .left_header{

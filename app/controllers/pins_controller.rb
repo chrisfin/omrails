@@ -6,11 +6,19 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
   # GET /pins
   # GET /pins.json
   def index
+    @newpin = Pin.last(:order => "id desc", :limit => 1)
     views = View.user_views(current_user)
     seen = views.map(&:pin_id) << -1
-    @pins = Pin.new_pin(seen)
-    @newpin = Pin.last(:order => "id desc", :limit => 1)
+    unseen = Pin.all_new_pins(seen).count
+    
+    @daily_counter = [30 - View.views_today(current_user).count, unseen ].min
 
+    if @daily_counter > 0
+      @pins = Pin.new_pin(seen)
+    else
+      @pins = nil
+    end
+   
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @pins }
