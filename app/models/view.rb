@@ -24,4 +24,16 @@ class View < ActiveRecord::Base
     self.last(:conditions => ['user_id = ?', user], :order => "id desc", :limit => 1)
   end
 
+  def self.admin_views(admins)
+    self.find(:all, :conditions => ['user_id in (?)', admins])
+  end
+
+  def self.real_user_views(admins)
+    self.find(:all, :conditions => ['user_id not in (?)', admins])
+  end
+
+  def self.real_user_yes(admins)
+     self.find(:all, :conditions => ['rank = 1 AND user_id not in (?)', admins])
+  end
+
 end

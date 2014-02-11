@@ -3,7 +3,9 @@
   <% if current_user.try(:admin?) %>
 
 
-<div class="left_header">All Users | Total: <%= @users.count %> </div>
+<div class="left_header">All Users | Total: <%= @users.count + @admins.count %> | Real: <%= @users.count %> | Admins: <%= @admins.count %> </div>
+
+<p><b>Real Users </b></p>
 
 			<table class="manage_table">
 			<tr>
@@ -20,6 +22,44 @@
 			</tr>
 			
 				<% @users.each do |user| %>
+		  		<tr>
+						<td><%= user.id %> </td>
+						<td class="table_spacer"><%= user.name %> </td>
+						<td class="table_spacer"><%= user.email %> </td>
+						<td class="table_spacer"><%= user.sex %> </td>
+						<td class="table_spacer"><%= user.views.count %> </td>
+						<td class="table_spacer"><%= number_to_percentage(number_with_precision(user.views.find(:all, :conditions => ["rank = 1"]).count.to_f / user.views.count.to_f * 100), precision: 0)  %>
+						<td class="table_spacer"><%= user.clicks.count %> </td>
+						<td class="table_spacer"><%= number_to_percentage(number_with_precision(user.clicks.find(:all, :conditions => ["place = 'shop'"]).count.to_f / user.clicks.count.to_f * 100), precision: 0)  %>
+
+						<td class="table_spacer"><%= user.created_at.to_formatted_s(:short) %> 
+						
+						<% if View.last_view(user) %>
+							<td class="table_spacer"><%= View.last_view(user).created_at.to_formatted_s(:short) %> 
+						<% end %>
+
+						</td>
+					</tr>
+				<% end %>
+				</table>
+
+<br/><p><b>Admin Users </b></p>
+
+		<table class="manage_table">
+			<tr>
+				<td>ID </td>
+				<td class="table_spacer">NAME </td>
+				<td class="table_spacer">EMAIL </td>
+				<td class="table_spacer">SEX </td>
+				<td class="table_spacer">Views</td>
+				<td class="table_spacer">%Yes</td>
+				<td class="table_spacer">Clicks</td>
+				<td class="table_spacer">% Shop</td>
+				<td class="table_spacer">User Created</td>
+				<td class="table_spacer">Last View</td>
+			</tr>
+			
+				<% @admins.each do |user| %>
 		  		<tr>
 						<td><%= user.id %> </td>
 						<td class="table_spacer"><%= user.name %> </td>

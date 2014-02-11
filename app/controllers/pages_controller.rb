@@ -5,18 +5,25 @@ class PagesController < ApplicationController
   end
 
   def control
-  	if current_user
+  	t = true
+    f = false
+    if current_user
     @user = current_user
   	@pins = Pin.find(:all)
-    @views = View.find(:all)
-    @clicks = Click.find(:all)
-    @users = User.find(:all, :order => "last_sign_in_at desc")
+
+    @users = User.find(:all, :conditions => ["admin = ?", f], :order => "last_sign_in_at desc")
+    @admins = User.find(:all, :conditions => ["admin = ?", t], :order => "last_sign_in_at desc")
     @active_pins = Pin.active_pins.count
     
-    yes = View.find(:all, :conditions => ["rank = 1"]).count.to_f
+    admin_ids = @admins.map(&:id)
+    @views = View.real_user_views(admin_ids)
+
+
+    yes = View.real_user_yes(admin_ids).count.to_f
     @percent_yes = yes / @views.count.to_f * 100
 
-    shop = Click.find(:all, :conditions => ["place = 'shop'"]).count.to_f
+    @clicks = Click.real_user_clicks(admin_ids)
+    shop = Click.real_user_shops(admin_ids).count.to_f
     @percent_shop = shop / @clicks.count.to_f * 100
 
   
@@ -52,7 +59,10 @@ class PagesController < ApplicationController
   end  
 
   def allusers
-    @users = User.find(:all, :order => "last_sign_in_at desc")
+    t = true
+    f = false
+     @users = User.find(:all, :conditions => ["admin = ?", f], :order => "last_sign_in_at desc")
+    @admins = User.find(:all, :conditions => ["admin = ?", t], :order => "last_sign_in_at desc")
   end
 
   def mobile

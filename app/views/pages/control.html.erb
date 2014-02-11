@@ -3,10 +3,10 @@
 	<% if current_user.try(:admin?) %>
   		<div class="well_header">Hello <%= current_user.name %>, you are a Fleur Admin</div>
   		<p> <%=link_to "Manage Uploaded Images", allpins_path %> | Pins Uploaded: <%= @pins.count %> | Active Pins: <%= @active_pins %> </p>
-  		<p> <%=link_to "Users Detail", allusers_path %> | Total Users: <%= @users.count %></p>
-  		<p> <%=link_to "Views Detail", views_show_path %> | Total Views: <%= @views.count %> | Views / User: <%= @views.count / @users.count %> | % Yes: <%= number_to_percentage(number_with_precision(@percent_yes), precision: 0) %></p>
+  		<p> <%=link_to "Users Detail", allusers_path %> | Total Users: <%= @users.count + @admins.count %> | Real: <%= @users.count %> | Admins: <%= @admins.count %> </p>
+  		<p> <%=link_to "Views Detail", views_show_path %> | User Views: <%= @views.count %> | Views / User: <%= @views.count / @users.count %> | % Yes: <%= number_to_percentage(number_with_precision(@percent_yes), precision: 0) %></p>
   		<p> 
-  		<p> <%=link_to "Clicks Detail", clicks_show_path %> | Total Views: <%= @clicks.count %> | Clicks / User: <%= @clicks.count / @users.count %> | % Shop: <%= number_to_percentage(number_with_precision(@percent_shop), precision: 0) %></p>
+  		<p> <%=link_to "Clicks Detail", clicks_show_path %> | User Clicks: <%= @clicks.count %> | Clicks / User: <%= @clicks.count / @users.count %> | % Shop: <%= number_to_percentage(number_with_precision(@percent_shop), precision: 0) %></p>
   		<p> 
 
 

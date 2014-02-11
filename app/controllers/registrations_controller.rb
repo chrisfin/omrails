@@ -2,6 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 after_filter :send_welcome, :only => :create
 
 def create
+  @newpin = Pin.last(:order => "id desc", :limit => 1)
     build_resource(sign_up_params)
     if resource.save
       yield resource if block_given?

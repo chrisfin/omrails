@@ -11,7 +11,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
     seen = views.map(&:pin_id) << -1
     unseen = Pin.all_new_pins(seen).count
     
-    @daily_counter = [30 - View.views_today(current_user).count, unseen ].min
+    @daily_counter = [20 - View.views_today(current_user).count, unseen ].min
 
     if @daily_counter > 0
       @pins = Pin.new_pin(seen)

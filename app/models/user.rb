@@ -17,4 +17,9 @@ class User < ActiveRecord::Base
   has_many :clicks
   has_many :pins, :through => :clicks
 
+def self.list_admins
+  t = true
+  self.find(:all, :conditions => ['admin = ?', t])
+end
+
 end
