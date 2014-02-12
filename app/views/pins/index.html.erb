@@ -4,10 +4,6 @@
 	<% if user_signed_in? %>
 		<% if @pins %>
 		<div class="well_header">Browse Today's Style Selection | <%= link_to 'My Catalog', shop_path %></div>
-		
-		<% if current_user.sex == "Male" %>
-			<div class="well_flash">(FYI: We only feature women's clothes right now. We're going to add a men's line soon!)</div>
-		<% end %>
 
 			<div id="AJAX">
 				<%= render @pins %>

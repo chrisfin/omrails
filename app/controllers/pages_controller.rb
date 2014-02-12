@@ -10,10 +10,14 @@ class PagesController < ApplicationController
     if current_user
     @user = current_user
   	@pins = Pin.find(:all)
+    @menpins = Pin.find(:all, :conditions => ["sex = 'Male'"], :order => "created_at desc")
+    @womenpins = Pin.find(:all, :conditions => ["sex = 'Female'"], :order => "created_at desc")
 
     @users = User.find(:all, :conditions => ["admin = ?", f], :order => "last_sign_in_at desc")
     @admins = User.find(:all, :conditions => ["admin = ?", t], :order => "last_sign_in_at desc")
     @active_pins = Pin.active_pins.count
+    @active_menpins = Pin.find(:all, :conditions => ["active = ? AND sex = 'Male'", t]).count
+    @active_womenpins = Pin.find(:all, :conditions => ["active = ? AND sex = 'Female'", t]).count
     
     admin_ids = @admins.map(&:id)
     @views = View.real_user_views(admin_ids)
@@ -54,9 +58,22 @@ class PagesController < ApplicationController
   
   def allpins
     @user = current_user
+    @allheader = "All"
     @pins = Pin.find(:all, :order => "created_at desc")
 
   end  
+
+  def menpins
+    @allheader = "Active Male"
+    @pins = Pin.find(:all, :conditions => ["sex = 'Male'"], :order => "created_at desc")
+
+  end
+
+  def womenpins
+    @allheader = "Active Female"
+    @pins = Pin.find(:all, :conditions => ["sex = 'Female'"], :order => "created_at desc")
+
+  end
 
   def allusers
     t = true

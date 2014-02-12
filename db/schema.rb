@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140131201006) do
+ActiveRecord::Schema.define(:version => 20140212172539) do
 
   create_table "clicks", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20140131201006) do
     t.boolean  "active"
     t.text     "brand"
     t.text     "item_type"
+    t.text     "sex"
   end
 
   add_index "pins", ["user_id"], :name => "index_pins_on_user_id"

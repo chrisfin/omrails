@@ -1,5 +1,5 @@
 class Pin < ActiveRecord::Base
-  attr_accessible :description, :image, :image_remote_url, :product_url, :price, :brand, :item_type, :active
+  attr_accessible :description, :image, :image_remote_url, :product_url, :price, :brand, :item_type, :active, :sex
 
   has_attached_file :image, styles: { large: "400x400>", thumb: "100x100>"}
   
@@ -10,6 +10,7 @@ class Pin < ActiveRecord::Base
   validates :brand, presence: true
   validates :price, presence: true
   validates :item_type, presence: true
+  validates :sex, presence: true
 
   belongs_to :user
   has_many :views
@@ -42,9 +43,9 @@ class Pin < ActiveRecord::Base
     
   end
 
-  def self.all_new_pins(pin_ids)
+  def self.all_new_pins(pin_ids, sex)
       b = TRUE
-      self.find(:all, :conditions => ["active = ? AND id not in (?)", b, pin_ids])
+      self.find(:all, :conditions => ["active = ? AND sex = ? AND id not in (?)", b, sex, pin_ids])
   end
 
   def self.active_pins

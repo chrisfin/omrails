@@ -7,9 +7,11 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
   # GET /pins.json
   def index
     @newpin = Pin.last(:order => "id desc", :limit => 1)
+    
+    sex = current_user.sex
     views = View.user_views(current_user)
     seen = views.map(&:pin_id) << -1
-    unseen = Pin.all_new_pins(seen).count
+    unseen = Pin.all_new_pins(seen, sex).count
     
     @daily_counter = [20 - View.views_today(current_user).count, unseen ].min
 

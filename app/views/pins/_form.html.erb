@@ -10,6 +10,7 @@
    	<%= f.input :product_url, as: :text, input_html: { rows: "1"}  %>
    	<%= f.input :brand, as: :text, input_html: { rows: "1"}  %>
     <%= f.input :price, as: :float %>
+    <%= f.input :sex, :as => :radio, :collection => ["Female", "Male"] %>
     <%= f.input :item_type, :collection => @items_types %>
    	<%= f.input :active, input_html: { checked: true } %>
 

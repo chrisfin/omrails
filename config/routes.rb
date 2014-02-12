@@ -22,6 +22,8 @@ Omrails::Application.routes.draw do
   get 'control' => 'pages#control'
   get 'shop' => 'views#shop'
   get 'allpins' => 'pages#allpins'
+  get 'menpins' => 'pages#menpins'
+  get 'womenpins' => 'pages#womenpins'
   get 'allusers' => 'pages#allusers'
   get 'mobile' => 'pages#mobile'
   get 'pinterest' => 'pages#pinterest-1c237'
