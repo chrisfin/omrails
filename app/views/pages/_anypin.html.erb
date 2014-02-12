@@ -11,7 +11,7 @@
           <table class="manage_table">
             <tr>
               <td rowspan="5", width="110px"><%= link_to (image_tag pin.image(:thumb)), pin.product_url, :target => "_blank" %></td>
-              <td>Price: <%= number_to_currency( pin.price, precision: 2) %> </td>
+              <td>Sex: <%= pin.sex %> Price: <%= number_to_currency( pin.price, precision: 2) %> </td>
               <td class="table_spacer">Date Added: <%= pin.created_at.to_formatted_s(:short) %></td>
     			   </tr>
             <tr><td>Item Type: <%= pin.item_type %></td>
