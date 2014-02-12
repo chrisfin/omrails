@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   def control
   	t = true
     f = false
+    
     if current_user
     @user = current_user
   	@pins = Pin.find(:all)
@@ -30,7 +31,6 @@ class PagesController < ApplicationController
     shop = Click.real_user_shops(admin_ids).count.to_f
     @percent_shop = shop / @clicks.count.to_f * 100
 
-  
     end
 
   end

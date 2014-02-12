@@ -31,7 +31,7 @@ class Pin < ActiveRecord::Base
 
   def self.user_pins(pin_ids)
       b = TRUE
-      self.find(:all, :conditions => ["active = ? AND id in (?)", b, pin_ids])
+      self.find(:all, :conditions => ["active = ? AND id in (?)", b, pin_ids], :order => "created_at desc")
   end
 
   def self.percent_yes

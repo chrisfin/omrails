@@ -8,24 +8,29 @@
 	<div class="row">
    		<div class="manage_item">
    			<% @pins.each do |pin| %>	
-          <table class="manage_table">
+          <table class="table_spacer">
             <tr>
-              <td rowspan="5", width="110px"><%= link_to (image_tag pin.image(:thumb)), pin.product_url, :target => "_blank" %></td>
-              <td>Sex: <%= pin.sex %> Price: <%= number_to_currency( pin.price, precision: 2) %> </td>
-              <td class="table_spacer">Date Added: <%= pin.created_at.to_formatted_s(:short) %></td>
+              <td rowspan="6", width="110px"><%= link_to (image_tag pin.image(:thumb)), pin.product_url, :target => "_blank" %></td>
+              <td>Price: <%= number_to_currency( pin.price, precision: 2) %> </td>
+              <td>Active: <%= pin.active %></td>
+              <td></td>
     			   </tr>
             <tr><td>Item Type: <%= pin.item_type %></td>
-                <td class="table_spacer">Total Views: <%= pin.views.count %> | % Yes: <%= number_to_percentage(number_with_precision(pin.views.find(:all, :conditions => ["rank = 1"]).count.to_f / pin.views.count.to_f * 100), precision: 0)  %></td>
+                <td>Added: <%= pin.created_at.to_formatted_s(:short) %></td>
+                <td></td>
             </tr>
-            <tr><td>Brand: <%= pin.brand %></td>
-              <td class="table_spacer">Total Clicks: <%= pin.clicks.count %> | % Shop: <%= number_to_percentage(number_with_precision(pin.clicks.find(:all, :conditions => ["place = 'shop'"]).count.to_f / pin.clicks.count.to_f * 100), precision: 0)  %></td>
-
+            
+            <tr>
+                <td>Brand: <%= pin.brand %></td>
+                <td>Total Views: <%= pin.views.count %></td>
+                <td>% Yes: <%= number_to_percentage(number_with_precision(pin.views.find(:all, :conditions => ["rank = 1"]).count.to_f / pin.views.count.to_f * 100), precision: 0)  %></td>
             </tr>
             
 
-            <tr><td>Active: <%= pin.active %></td>
-                <td class="table_spacer"></td>
-
+            <tr>
+                <td>Sex: <%= pin.sex %></td>
+                <td>Total Clicks: <%= pin.clicks.count %></td>
+                <td>% Shop: <%= number_to_percentage(number_with_precision(pin.clicks.find(:all, :conditions => ["place = 'shop'"]).count.to_f / pin.clicks.count.to_f * 100), precision: 0)  %></td>
             </tr>
             
 
