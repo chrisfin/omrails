@@ -1,7 +1,7 @@
 class PinsController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
 
-ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dresses", "Jeans", "Pants", "Leggings", "Shorts", "Skirts", "Blazers", "Suits", "Jackets", "Swim"]
+ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatshirts", "Dresses", "Jeans", "Pants", "Leggings", "Shorts", "Skirts", "Blazers", "Suits", "Jackets", "Swim"]
 
   # GET /pins
   # GET /pins.json
@@ -57,6 +57,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
 
   # GET /pins/1/edit
   def edit
+    @edit_return = params[:page]
     @pin = Pin.find(params[:id])
     @items_types = ITEM_TYPE_LIST
 

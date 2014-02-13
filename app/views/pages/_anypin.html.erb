@@ -34,7 +34,7 @@
             </tr>
             
 
-            <tr><td><%= link_to "Edit", controller: "pins", action: "edit", id: pin.id %> <%= link_to "Delete", pin, method: :delete, data: {confirm: 'Are you sure'} %></td></tr>
+            <tr><td><%= link_to "Edit", controller: "pins", action: "edit", id: pin.id, :page => @edit_return %> <%= link_to "Delete", pin, method: :delete, data: {confirm: 'Are you sure'} %></td></tr>
           </table>
   		
     			</br>
