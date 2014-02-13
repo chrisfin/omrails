@@ -6,7 +6,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
   # GET /pins
   # GET /pins.json
   def index
-    @newpin = Pin.last(:order => "id desc", :limit => 1)
+    @newpin = Pin.last(:conditions => ["sex = 'Female'"], :order => "created_at desc", :limit => 1)
     
     if current_user
     sex = current_user.sex
