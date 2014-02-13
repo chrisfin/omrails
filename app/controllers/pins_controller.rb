@@ -21,7 +21,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Sweaters", "Sweatshirts", "Dr
     @daily_counter = [20 - View.views_today(current_user).count, unseen ].min
 
     if @daily_counter > 0
-      @pins = Pin.new_pin(seen)
+      @pins = Pin.new_pin(seen, sex)
     else
       @pins = nil
     end

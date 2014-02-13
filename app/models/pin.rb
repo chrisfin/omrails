@@ -24,9 +24,9 @@ class Pin < ActiveRecord::Base
   	super
   end
   
-  def self.new_pin(pin_ids)
+  def self.new_pin(pin_ids, sex)
       b = TRUE
-      self.find(:first, :conditions => ["active = ? AND id not in (?)", b, pin_ids], :order => "id desc" )
+      self.find(:first, :conditions => ["sex = ? AND active = ? AND id not in (?)", sex, b, pin_ids], :order => "created_at desc" )
   end
 
   def self.user_pins(pin_ids)
