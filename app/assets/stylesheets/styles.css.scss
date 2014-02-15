@@ -18,6 +18,7 @@ body {
 	font-family: 'Crimson Text', serif;
 	font-size: 18px;
 
+
 }
 
 .logo {
@@ -73,6 +74,7 @@ footer a {
 	font-family: 'Crimson Text', serif;
 }
 
+
 .well_header img {
 	padding-top: 20px;
 }
@@ -86,12 +88,20 @@ footer a {
 	color: red;
 }
 
+.center_well {
+  width: 710px ;
+  margin-left: auto;
+  margin-right: auto;
+  height: 400px;
+	padding-left: 115px;
+
+}
+
 .well{
 	margin-top: 10px;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	Margin-left:auto;
-    Margin-right:auto;
+	float:left;
 	height: 400px;
 	width: 550px;
 	background-color: white;
@@ -107,9 +117,68 @@ footer a {
     Margin-right:auto;
 }
 
+.right_well_header {
+	float:right;
+	background-color: white;
+		text-align: center;
+	font-size: 18px;
+	margin-top: 10px;
+	height: 25px;
+	width: 110px;
+		border: 1px solid #777777;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	font-family: 'Crimson Text', serif;	
+
+}
+
+.right_well_header a {
+
+	color: black;
+&:hover {
+  color: #999;
+  text-decoration: none;
+}
+}
+
+.right_well_footer {
+		height: 25px;
+		width: 110px;
+		float: right;
+		margin-top: 2px;
+
+}
+
+.right_well{
+	float:right;
+	border: 1px solid #e3e3e3;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	height: 354px;
+	width: 110px;
+	margin-top: 2px;
+	padding-bottom: 15px;
+}
+
+.right_well img {
+	display: block;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	Margin-left:auto;
+  Margin-right:auto;
+}
+
+.right_well_image {
+	height: 110px;
+	padding-bottom: 12px;
+	text-align: center;
+	margin-top: 2px;
+}
+
 .btn_well{
 	Margin-left:auto;
-    Margin-right:auto;
+   Margin-right:auto;
 	width: 550px;
 	background-color: white;
 }

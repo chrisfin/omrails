@@ -17,15 +17,21 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
     views = View.user_views(current_user)
     seen = views.map(&:pin_id) << -1
     unseen = Pin.all_new_pins(seen, sex).count
+    
+    views_today = View.views_today(current_user)
 
-    @daily_counter = [20 - View.views_today(current_user).count, unseen ].min
+    @daily_counter = [20 - views_today.count, unseen ].min
 
     if @daily_counter > 0
       @pins = Pin.new_pin(seen, sex)
     else
       @pins = nil
     end
-   
+    
+    yes_views_today = View.yes_views_today(current_user)
+    seen_today = yes_views_today.map(&:pin_id)
+    @pins_today = Pin.user_pins(seen_today.reverse).last(3).reverse
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @pins }
@@ -79,6 +85,10 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
         format.json { render json: @pin.errors, status: :unprocessable_entity }
       end
     end
+
+    def new_user_pin_view 
+
+    end
   end
 
   # PUT /pins/1
@@ -109,4 +119,8 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
       format.json { head :no_content }
     end
   end
+
+  def test
+  end
+
 end

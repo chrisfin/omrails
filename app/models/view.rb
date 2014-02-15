@@ -20,6 +20,12 @@ class View < ActiveRecord::Base
     views = self.find(:all, :conditions => ['user_id = ? AND created_at > ?', user, now ])
   end
 
+    def self.yes_views_today(user)
+    date = Time.now
+    now = date.at_beginning_of_day
+    views = self.find(:all, :conditions => ['rank = 1 AND user_id = ? AND created_at > ?', user, now ])
+  end
+
   def self.last_view(user)
     self.last(:conditions => ['user_id = ?', user], :order => "id desc", :limit => 1)
   end

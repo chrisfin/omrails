@@ -7,6 +7,7 @@ Omrails::Application.routes.draw do
   get "pages/allusers"
   get "clicks/show"
   post "views/shop"
+  get "pins/test"
 
   resources :pins
   resources :views
