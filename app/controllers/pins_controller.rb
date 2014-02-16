@@ -30,7 +30,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
     
     yes_views_today = View.yes_views_today(current_user)
     seen_today = yes_views_today.map(&:pin_id)
-    @pins_today = Pin.user_pins(seen_today.reverse).last(3).reverse
+    @pins_today = Pin.user_pins(seen_today).last(3).reverse
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,6 +54,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
   def new
     @pin = current_user.pins.new
     @items_types = ITEM_TYPE_LIST
+    @brands = Brand.find(:all)
 
     respond_to do |format|
       format.html # new.html.erb

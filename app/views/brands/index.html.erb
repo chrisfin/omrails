@@ -1,0 +1,51 @@
+<% if user_signed_in? %>
+
+  <% if current_user.try(:admin?) %>
+
+
+<h1>Listing brands</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Image</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @brands.each do |brand| %>
+  <tr>
+    <td><%= link_to brand.name, brand.url %></td>
+    <td><%= image_tag brand.image(:small) %></td>
+    <td><%= link_to 'Show', brand %></td>
+    <td><%= link_to 'Edit', edit_brand_path(brand) %></td>
+    <td><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Brand', new_brand_path %>
+
+
+<% else %>
+    <b>Make current user a Fleur Admin</b>
+        
+    <%= form_tag pages_authenticate_path do %>
+    <label>Enter Password</label>
+    <%= password_field_tag :adminpass %>
+    <%= submit_tag "Submit" %>
+    <% end %>
+
+  <% end %>
+
+<% else %>
+
+  <div class="hero-unit"> 
+    <div class="well_header">Must be signed in to access admin panel.</div>
+  </div>
+
+<% end %>
+

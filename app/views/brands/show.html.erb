@@ -1,0 +1,46 @@
+<% if user_signed_in? %>
+
+	<% if current_user.try(:admin?) %>
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @brand.name %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= image_tag @brand.image(:small) %>
+  <%= image_tag @brand.image(:tiny) %>
+</p>
+
+<p>
+  <b>Brand URL:</b>
+  <%= @brand.url %>
+</p>
+
+<%= link_to 'Edit', edit_brand_path(@brand) %> |
+<%= link_to 'Back', brands_path %>
+
+
+<% else %>
+		<b>Make current user a Fleur Admin</b>
+				
+		<%= form_tag pages_authenticate_path do %>
+  	<label>Enter Password</label>
+  	<%= password_field_tag :adminpass %>
+ 		<%= submit_tag "Submit" %>
+		<% end %>
+
+	<% end %>
+
+<% else %>
+
+	<div class="hero-unit"> 
+		<div class="well_header">Must be signed in to access admin panel.</div>
+	</div>
+
+<% end %>
+

@@ -1,5 +1,5 @@
 class Pin < ActiveRecord::Base
-  attr_accessible :description, :image, :image_remote_url, :product_url, :price, :brand, :item_type, :active, :sex
+  attr_accessible :description, :image, :image_remote_url, :product_url, :price, :brand_id, :item_type, :active, :sex
 
   has_attached_file :image, styles: { large: "400x400>", thumb: "100x100>"}
   
@@ -7,7 +7,7 @@ class Pin < ActiveRecord::Base
                             content_type: { content_type: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'] },
                             size: { less_than: 5.megabytes }
   validates :product_url, presence: true
-  validates :brand, presence: true
+  validates :brand_id, presence: true
   validates :price, presence: true
   validates :item_type, presence: true
   validates :sex, presence: true
@@ -17,6 +17,7 @@ class Pin < ActiveRecord::Base
   has_many :users, :through => :views
   has_many :clicks
   has_many :users, :through => :clicks
+  belongs_to :brand
 
   
   def image_remote_url=(url_value)

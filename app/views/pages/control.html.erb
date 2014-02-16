@@ -10,6 +10,8 @@
   		<p> 
   		<p> <%=link_to "Clicks Detail", clicks_show_path %> | User Clicks: <%= @clicks.count %> | Clicks / User: <%= @clicks.count / @users.count %> | % Shop: <%= number_to_percentage(number_with_precision(@percent_shop), precision: 0) %></p>
   		<p> 
+        <%= link_to "Add a Brand", new_brand_path %>
+      </p>
 
 
 	<% else %>

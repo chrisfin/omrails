@@ -21,7 +21,7 @@
             </tr>
             
             <tr>
-                <td>Brand: <%= pin.brand %></td>
+                <td>Brand: <% if pin.brand == nil %> NotFixed <% else %> <%= link_to pin.brand.name, pin.brand.url %> <% end %></td>
                 <td>Total Views: <%= pin.views.count %></td>
                 <td>% Yes: <%= number_to_percentage(number_with_precision(pin.views.find(:all, :conditions => ["rank = 1"]).count.to_f / pin.views.count.to_f * 100), precision: 0)  %></td>
             </tr>

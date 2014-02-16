@@ -8,7 +8,7 @@
     <%= f.input :image, label: 'Upload an Image' %>
     <%= f.input :image_remote_url, label: "or enter a URL" %>
    	<%= f.input :product_url, as: :text, input_html: { rows: "1"}  %>
-   	<%= f.input :brand, as: :text, input_html: { rows: "1"}  %>
+   	<%= f.input :brand_id, :collection => @brands %>
     <%= f.input :price, as: :float %>
     <%= f.input :sex, :as => :radio, :collection => ["Female", "Male"] %>
     <%= f.input :item_type, :collection => @items_types %>

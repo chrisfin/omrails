@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140212172539) do
+ActiveRecord::Schema.define(:version => 20140216202246) do
+
+  create_table "brands", :force => true do |t|
+    t.string   "name"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "url"
+  end
 
   create_table "clicks", :force => true do |t|
     t.integer  "user_id"
@@ -37,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20140212172539) do
     t.text     "brand"
     t.text     "item_type"
     t.text     "sex"
+    t.integer  "brand_id"
   end
 
   add_index "pins", ["user_id"], :name => "index_pins_on_user_id"
