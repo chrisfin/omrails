@@ -1,5 +1,5 @@
 class Pin < ActiveRecord::Base
-  attr_accessible :description, :image, :image_remote_url, :product_url, :price, :brand_id, :item_type, :active, :sex
+  attr_accessible :description, :image, :image_remote_url, :product_url, :price, :brand_id, :brand, :item_type, :active, :sex
 
   has_attached_file :image, styles: { large: "400x400>", thumb: "100x100>"}
   

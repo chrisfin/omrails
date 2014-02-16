@@ -67,6 +67,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
     @edit_return = params[:page]
     @pin = Pin.find(params[:id])
     @items_types = ITEM_TYPE_LIST
+    @brands = Brand.find(:all)
 
   end
 
