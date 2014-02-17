@@ -4,7 +4,9 @@
 
 jQuery -> 
 	$('#shop').ImagesLoaded ->
-		$('#shop').masonry itemSelector: ".shop_pic"
+		$('#shop').masonry 
+      itemSelector: ".shop_pic"
+      columnWidth: 410
 
   if $('.pagination').length
     $(window).scroll ->
