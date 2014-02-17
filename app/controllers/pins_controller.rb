@@ -54,7 +54,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
   def new
     @pin = current_user.pins.new
     @items_types = ITEM_TYPE_LIST
-    @brands = Brand.find(:all)
+    @brands = Brand.find(:all, :order => "name")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -67,7 +67,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
     @edit_return = params[:page]
     @pin = Pin.find(params[:id])
     @items_types = ITEM_TYPE_LIST
-    @brands = Brand.find(:all)
+    @brands = Brand.find(:all, :order => "name")
 
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140216202246) do
+ActiveRecord::Schema.define(:version => 20140217185422) do
 
   create_table "brands", :force => true do |t|
     t.string   "name"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20140216202246) do
     t.float    "price"
     t.text     "product_url"
     t.boolean  "active"
-    t.text     "brand"
     t.text     "item_type"
     t.text     "sex"
     t.integer  "brand_id"
