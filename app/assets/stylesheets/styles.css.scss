@@ -37,6 +37,8 @@ footer {
   color: #999;
   padding-left: 0px;
   font-size: 12px;
+  width: 100%;
+  clear: both;
 }
 
 footer a {
@@ -108,6 +110,24 @@ footer a {
 
 }
 
+.show_info {
+	margin-top: 10px;
+	padding: 15px;
+	float:left;
+	height: 400px;
+	font-size: 20px;
+	text-align: center;
+
+}
+
+.show_info img{
+	padding-bottom: 10px;
+}
+
+.show_info p {
+	padding-bottom: 5px;
+}
+
 .well img {
 	display: block;
 	-webkit-border-radius: 5px;
@@ -125,9 +145,10 @@ footer a {
 	margin-top: 10px;
 	height: 25px;
 	width: 110px;
-		border: 1px solid #777777;
+	border: 1px solid #777777;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	border-radius: 5px;
 	font-family: 'Crimson Text', serif;	
 
 }
@@ -154,6 +175,7 @@ footer a {
 	border: 1px solid #e3e3e3;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	border-radius: 5px;
 	height: 354px;
 	width: 110px;
 	margin-top: 2px;
@@ -199,6 +221,7 @@ footer a {
 	width: 45px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	border-radius: 5px;
 	margin-left: 12px;
 	font-size: 18px;
 	color: #777777;
@@ -257,16 +280,39 @@ footer a {
 
 /* Shop */
 
-.shop {
-	padding-top: 10px;
+#shop {
+	width: 100%;
 }
 
-.shop img {
+.shop_pic {
+	float:left;
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid #e3e3e3;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	margin-top:5px;
-	
+}
+
+.shop_pic img{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	float:left;
+	padding-bottom: 5px;
+
+}
+.shop_pic_low{
+	text-align: right;
+}
+
+.shop_pic_low img {
+	float:left;
+}
+
+.hero-unit {
+	padding-top: 10px;
+	padding-bottom: 0px;
 }
 
 /* Required for jQuery Masonry */

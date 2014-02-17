@@ -3,8 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery -> 
-	$('#pins').ImagesLoaded ->
-		$('#pins').masonry itemSelector: ".box"
+	$('#shop').ImagesLoaded ->
+		$('#shop').masonry 
+      itemSelector: ".shop_pic"
+      columnWidth: 100
 
   if $('.pagination').length
     $(window).scroll ->

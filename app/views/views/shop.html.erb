@@ -11,23 +11,33 @@
 <% else %>
 
 	<div class="well_header">My Catalog: Click on Any Image to Make a Purchase | <%= link_to 'Browse', root_path %></div>
-				
-		<%= form_tag views_shop_path do %>
-  	Filter by Max Price: 
-  	<%= text_field_tag :pricetop, '', placeholder: @price_placeholder %>
- 		<%= submit_tag "Filter" %>
-		<% end %>
+	<div class="hero-unit">			
+			<%= form_tag views_shop_path do %>
+	  	Filter by Max Price: 
+	  	<%= text_field_tag :pricetop, '', placeholder: @price_placeholder %>
+	 		<%= submit_tag "Filter" %>
+			<% end %>
+	</div>
 	
-	<div class="shop">
+	<div id="shop">
+		
 		<% @pins.each do |pin| %>
-  		<%= link_to (image_tag pin.image(:large)), {:controller => "clicks", 
-                       :action => "create", 
-                       :place => "shop",
-                       :user_id => current_user.id, 
-                       :pin_id => pin.id
-                       },
-                       :method => "post", :target => "_blank" %>
+			<div class="shop_pic">
+		  		<%= link_to (image_tag pin.image(:large)), {:controller => "clicks", 
+		                       :action => "create", 
+		                       :place => "shop",
+		                       :user_id => current_user.id, 
+		                       :pin_id => pin.id
+		                       },
+		                       :method => "post", :target => "_blank" %>
+				
+				<div class="shop_pic_low">
+					<%= link_to (image_tag pin.brand.image(:tiny)), pin.brand.url %>
+					<%= link_to number_to_currency( pin.price, precision: 2), pin %>
+				</div>
+			</div>
 		<% end %>
+
 	</div>
 
 <% end %>	
