@@ -1,0 +1,7 @@
+<b>Make current user a Fleur Admin</b>
+				
+	<%= form_tag pages_authenticate_path do %>
+ 	<label>Enter Password</label>
+  	<%= password_field_tag :adminpass %>
+ 		<%= submit_tag "Submit" %>
+		<% end %>

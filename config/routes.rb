@@ -15,6 +15,7 @@ Omrails::Application.routes.draw do
   get "clicks/show"
   post "views/shop"
   get "pins/test"
+  get "pages/create_admin"
 
   devise_for :users, controllers: { registrations: "registrations" }
   match 'users/:id' => 'users#show', as: :user
@@ -30,6 +31,7 @@ Omrails::Application.routes.draw do
   get 'mobile' => 'pages#mobile'
   get 'pinterest' => 'pages#pinterest-1c237'
 
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,6 +1,3 @@
-<% if user_signed_in? %>
-
-  <% if current_user.try(:admin?) %>
 
 <div class="left_header"> <%= @allheader %> Items Created <%= link_to "Add an Item", new_pin_path %></div>
 
@@ -42,22 +39,3 @@
   		</div>
 	</div>	
 </div>	
-
-<% else %>
-    <b>Make current user a Fleur Admin</b>
-        
-    <%= form_tag pages_authenticate_path do %>
-    <label>Enter Password</label>
-    <%= password_field_tag :adminpass %>
-    <%= submit_tag "Submit" %>
-    <% end %>
-
-  <% end %>
-
-<% else %>
-
-  <div class="hero-unit"> 
-    <div class="well_header">Must be signed in to access admin panel.</div>
-  </div>
-
-<% end %>

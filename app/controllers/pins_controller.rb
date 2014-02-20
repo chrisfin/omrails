@@ -1,5 +1,8 @@
 class PinsController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
+  before_filter :signed_in_user, only: [:new, :edit, :create, :update, :destroy]
+  before_filter :signed_in_admin, only: [:new, :edit, :create, :update, :destroy]
+
 
 ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatshirts", "Dresses", "Jeans", "Pants", "Leggings", "Shorts", "Skirts", "Blazers", "Suits", "Jackets", "Swim"]
 
@@ -87,10 +90,6 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
         format.json { render json: @pin.errors, status: :unprocessable_entity }
       end
     end
-
-    def new_user_pin_view 
-
-    end
   end
 
   # PUT /pins/1
@@ -124,5 +123,19 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
 
   def test
   end
+
+private
+
+      def signed_in_user
+        unless user_signed_in?
+          redirect_to new_user_session_path, notice: "Please sign in to view this page."
+        end
+      end
+
+      def signed_in_admin
+        unless current_user.try(:admin?)
+          redirect_to pages_create_admin_path, notice: "User must be an Admin to access this page."
+        end
+      end
 
 end

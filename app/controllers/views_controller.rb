@@ -1,4 +1,7 @@
 class ViewsController < ApplicationController
+  before_filter :signed_in_user, only: [:shop, :show]
+  before_filter :signed_in_admin, only: [:destroy, :show]
+
 
 def show
 	@views = View.order("created_at desc")
@@ -45,5 +48,19 @@ def destroy
       format.json { head :no_content }
     end
   end
+
+private
+
+      def signed_in_user
+        unless user_signed_in?
+          redirect_to new_user_session_path, notice: "Please sign in to view this page."
+        end
+      end
+
+      def signed_in_admin
+        unless current_user.try(:admin?)
+          redirect_to pages_create_admin_path, notice: "User must be an Admin to access this page."
+        end
+      end
 
 end

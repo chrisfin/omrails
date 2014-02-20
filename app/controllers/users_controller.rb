@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  
+ before_filter :signed_in_admin
+
   def show
  	@user = User.find(params[:id])
  	@pins = @user.pins.order("created_at desc").page(params[:page]).per_page(20)
-  UserMailer.welcome_email(@user).deliver
   end
 
   def edit
@@ -22,4 +22,11 @@ def destroy
     end
  end
 
+private
+
+  def signed_in_admin
+        unless current_user.try(:admin?)
+          redirect_to pages_create_admin_path, notice: "User must be an Admin to access this page."
+        end
+      end
 end

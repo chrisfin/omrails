@@ -1,14 +1,12 @@
 class PagesController < ApplicationController
-  def home
-  end
-  def action
-  end
+  before_filter :signed_in_user, except: [:mobile]
+  before_filter :signed_in_admin, except: [:mobile, :create_admin, :authenticate]
+  before_filter :admin_user,     only: :destroy
 
   def control
   	t = true
     f = false
     
-    if current_user
     @user = current_user
   	@pins = Pin.find(:all)
     @menpins = Pin.find(:all, :conditions => ["sex = 'Male'"], :order => "created_at desc")
@@ -31,7 +29,10 @@ class PagesController < ApplicationController
     shop = Click.real_user_shops(admin_ids).count.to_f
     @percent_shop = shop / @clicks.count.to_f * 100
 
-    end
+
+  end
+
+  def create_admin
 
   end
 
@@ -85,5 +86,24 @@ class PagesController < ApplicationController
   def mobile
 
   end
+
+
+  private
+
+      def signed_in_user
+        unless user_signed_in?
+          redirect_to new_user_session_path, notice: "Please sign in to view this page."
+        end
+      end
+
+      def signed_in_admin
+        unless current_user.try(:admin?)
+          redirect_to pages_create_admin_path, notice: "User must be an Admin to access this page."
+        end
+      end
+
+      def admin_user
+        redirect_to(root_path) unless current_user.admin?
+      end
 
 end
