@@ -65,17 +65,7 @@ Omrails::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   #  In production, :host should be set to the actual host of your application.
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
-# Config Amazon S3 for PaperClip images config/environments/production.rb
-config.paperclip_defaults = {
-  :storage => :s3,
-  :s3_credentials => {
-    :bucket => ENV['S3_BUCKET_NAME'],
-    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-  }
-}
+  config.action_mailer.default_url_options = { :host => 'shopfleur.co' }
 
 # Change mail delvery to either :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :smtp
@@ -88,6 +78,16 @@ config.paperclip_defaults = {
   enable_starttls_auto: true,
   user_name: ENV['SMTP_EMAIL_USER_NAME'],
   password: ENV['SMTP_EMAIL_PASS']
+}
+
+# Config Amazon S3 for PaperClip images config/environments/production.rb
+config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['S3_BUCKET_NAME'],
+    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  }
 }
 
 end
