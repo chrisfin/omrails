@@ -128,6 +128,13 @@ footer a {
 	padding-bottom: 5px;
 }
 
+.new_pin {
+	margin-top: -10px;
+	padding: 7px;
+	background-color: black;
+	color: white;
+}
+
 .well img {
 	display: block;
 	-webkit-border-radius: 5px;
@@ -189,6 +196,14 @@ footer a {
 	border-radius: 5px;
 	Margin-left:auto;
   Margin-right:auto;
+}
+.right_well a {
+
+	color: black;
+&:hover {
+  color: #999;
+  text-decoration: none;
+}
 }
 
 .right_well_image {
@@ -334,3 +349,5 @@ footer a {
 .table_spacer td{
 	width: 175px;
 }
+
+
