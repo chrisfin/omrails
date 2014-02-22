@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  before_filter :signed_in_user, except: [:mobile]
-  before_filter :signed_in_admin, except: [:mobile, :create_admin, :authenticate]
+  before_filter :signed_in_user, except: [:about, :mobile]
+  before_filter :signed_in_admin, except: [:about,  :mobile, :create_admin, :authenticate]
   before_filter :admin_user,     only: :destroy
 
   def control

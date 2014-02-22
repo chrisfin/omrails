@@ -2,7 +2,6 @@ class ViewsController < ApplicationController
   before_filter :signed_in_user, only: [:shop, :show]
   before_filter :signed_in_admin, only: [:destroy, :show]
 
-
 def show
 	@views = View.order("created_at desc")
 	

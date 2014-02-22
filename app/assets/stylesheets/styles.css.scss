@@ -4,10 +4,27 @@ $btnPrimaryBackground: Green;
 
 @import 'bootstrap';
 @import 'bootstrap-responsive';
-@import url(http://fonts.googleapis.com/css?family=Crimson+Text:600|);
+@import url(http://fonts.googleapis.com/css?family=Vollkorn);
+
+html {
+    height: 100%;
+}
 
 body {
-		padding-top: 60px
+		font-family: 'Vollkorn', serif;
+		margin: 0;
+    	background-repeat: no-repeat;
+    	background-attachment: fixed;
+		/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5ZjlmOSIgc3RvcC1vcGFjaXR5PSIwLjY1Ii8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top, rgba(249,249,249,0.65) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(249,249,249,0.65)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(249,249,249,0.65) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(249,249,249,0.65) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(249,249,249,0.65) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(249,249,249,0.65) 0%,rgba(255,255,255,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6f9f9f9', endColorstr='#ffffff',GradientType=0 );
+
 }
 
 /* header */
@@ -15,7 +32,6 @@ body {
 .header {
 	margin-top: 5px;
 	padding-left: 0px;
-	font-family: 'Crimson Text', serif;
 	font-size: 18px;
 
 
@@ -34,11 +50,13 @@ footer {
   margin-top: 20px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
-  color: #999;
+  color: #777777;
   padding-left: 0px;
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
   clear: both;
+
+
 }
 
 footer a {
@@ -49,13 +67,13 @@ footer a {
 }
 }
 
+
 .footer_right{
   float: right;
   padding-right: 60px;
 }
 
 .footer {
-	margin-top: 50px;
 	color: $grayLight;
 	a {
 		color: $gray;
@@ -71,9 +89,8 @@ footer a {
 .well_header{
 	font-size: 30px;
 	text-align: center;
-	margin-top: 20px;
-	margin-bottom: 25px;
-	font-family: 'Crimson Text', serif;
+	margin-top: 30px;
+	margin-bottom: 20px;
 }
 
 
@@ -86,7 +103,6 @@ footer a {
 	text-align: center;
 	margin-top: -10px;
 	margin-bottom: 15px;
-	font-family: 'Crimson Text', serif;	
 	color: red;
 }
 
@@ -142,29 +158,28 @@ footer a {
 	border-radius: 5px;
 	Margin-left:auto;
     Margin-right:auto;
+    vertical-align: middle;
 }
 
 .right_well_header {
 	float:right;
 	background-color: white;
-		text-align: center;
+	text-align: center;
 	font-size: 18px;
 	margin-top: 10px;
-	height: 25px;
+	height: 20px;
 	width: 110px;
-	border: 1px solid #777777;
+	border: 1px solid #e3e3e3;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	font-family: 'Crimson Text', serif;	
-
+	padding-top: 5px;
 }
 
 .right_well_header a {
-
-	color: black;
+	color: #777777;
 &:hover {
-  color: #999;
+  color: black;
   text-decoration: none;
 }
 }
@@ -187,6 +202,7 @@ footer a {
 	width: 110px;
 	margin-top: 2px;
 	padding-bottom: 15px;
+	background-color: white;
 }
 
 .right_well img {
@@ -199,9 +215,9 @@ footer a {
 }
 .right_well a {
 
-	color: black;
+	color: #777777;
 &:hover {
-  color: #999;
+  color: black;
   text-decoration: none;
 }
 }
@@ -242,6 +258,7 @@ footer a {
 	color: #777777;
 	padding-top: 12px;
 	text-align:center;
+	background-color: white;
 
 }
 
@@ -252,7 +269,7 @@ footer a {
 
 .left_header{
 	font-size: 30px;
-	margin-top: 20px;
+	margin-top: 25px;
 	margin-bottom: 25px;
 	font-family: 'Crimson Text', serif;
 }
@@ -304,7 +321,13 @@ footer a {
 	float:left;
 	margin: 5px;
 	padding: 5px;
-	height: 440px
+	height: 440px;
+	border: 1px solid #e3e3e3;
+	background-color: white;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
 }
 
 .shop_pic_top img{
