@@ -1,19 +1,21 @@
 Omrails::Application.routes.draw do
   resources :brands
   resources :pins
-  resources :views
   resources :clicks
+  resources :views
+
 
   root :to => 'pins#index' 
 
   get "users/show"
-  get "views/show"
-  get "views/shop"
   post "pages/authenticate"
   get "pages/allpins"
   get "pages/allusers"
   get "clicks/show"
-  post "views/shop"
+  get "views/show"
+  get "views/shop"
+  post "pages/shop"
+  get "pages/shop"
   get "pins/test"
   get "pages/create_admin"
 
@@ -23,7 +25,6 @@ Omrails::Application.routes.draw do
 
   get 'about' => 'pages#about'
   get 'control' => 'pages#control'
-  get 'shop' => 'views#shop'
   get 'allpins' => 'pages#allpins'
   get 'menpins' => 'pages#menpins'
   get 'womenpins' => 'pages#womenpins'

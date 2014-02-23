@@ -46,8 +46,8 @@
 			
 				<div class="well_header"> 
 					<p>Fleur is out of new stuff. Come back tomorrow!  |  
-					<%= link_to 'My Catalog', shop_path %> </p>
-					<%= link_to image_tag("storefront.jpg"), shop_path %> 
+					<%= link_to 'My Catalog', pages_shop_path %> </p>
+					<%= link_to image_tag("storefront.jpg"), pages_shop_path %> 
 				</div>	
 				
 		<% end %>
@@ -64,7 +64,7 @@
    					<%= link_to (image_tag @newpin.image(:large)), @newpin.product_url, :target => "_blank" %>	
     			</div>
      
-     			<div class="right_well_header"><%= link_to "My Catalog", shop_path %></div> 
+     			<div class="right_well_header"><%= link_to "My Catalog", pages_shop_path %></div> 
 
 	        		<div class="right_well">
 	          			<% @pins_today.each do |pin| %>
@@ -80,7 +80,7 @@
           			<% end %>                    
         			</div>
 				<div class="right_well_footer"> 
-      			<%=link_to '<i class="icon-white icon-tag"></i> Shop'.html_safe, shop_path, class: "btn btn-block btn-info btn-medium" %>
+      			<%=link_to '<i class="icon-white icon-tag"></i> Shop'.html_safe, pages_shop_path, class: "btn btn-block btn-info btn-medium" %>
      			</div>
        
       		</div>

@@ -11,7 +11,7 @@
                        :method => "post", :target => "_blank" %>	
 	   </div>
 
-     <div class="right_well_header"><%= link_to "My Catalog", shop_path %></div> 
+     <div class="right_well_header"><%= link_to "My Catalog", pages_shop_path %></div> 
 
         <div class="right_well">
           <% @pins_today.each do |pin| %>
@@ -31,7 +31,7 @@
         </div>
 
      <div class="right_well_footer"> 
-      <%=link_to '<i class="icon-white icon-tags"></i> Shop'.html_safe, shop_path, class: "btn btn-block btn-info btn-medium" %>
+      <%=link_to '<i class="icon-white icon-tags"></i> Shop'.html_safe, pages_shop_path, class: "btn btn-block btn-info btn-medium" %>
      </div>
        
       </div>
