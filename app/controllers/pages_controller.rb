@@ -103,7 +103,7 @@ class PagesController < ApplicationController
     else
       @price_placeholder = "Enter Price"
     end
-     @pins = @pins.paginate(:page => params[:page], :per_page => 5)
+     @pins = @pins.paginate(:page => params[:page], :per_page => 20)
 end
 
   private
