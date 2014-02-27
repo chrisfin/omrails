@@ -1,7 +1,8 @@
 <div class="row">
 			<div class="well_header"> 
-
-			<%= session[:ranks] %>
+			<%= @pins_today %>
+			<%= session[:ranks] %></br>
+			<%= @seen %>
 
 				Daily Playlists of Shoppable Fashion | <%= link_to "Sign Up", "#", :onclick => "$('#myModal').modal('show');" %> | <%= link_to "Learn More", about_path %></div>
 			
@@ -59,8 +60,14 @@
 
 					</div>
 				
-					<div class="btn_right"> 	
-						<%= link_to '<i class="icon-white icon-heart"></i> Yes!'.html_safe, "#", :onclick => "$('#myModal').modal('show');", class: "btn btn-block btn-success btn-large"  %>
+					<div class="btn_right">
+					<%= link_to '<i class="icon-white icon-heart"></i> Yes!'.html_safe, {:controller => "views", 
+		                       :action => "new_user_save", 
+		                       :rank => 1, 
+		                       :pin_id => @pins.id
+		                       },
+		                       :method => "post", class: "btn btn-block btn-success btn-large"  %> 	
+						
 						<div class="center_small">(Love it! Give me more like it.)</div>
 					</div>
 				</div>

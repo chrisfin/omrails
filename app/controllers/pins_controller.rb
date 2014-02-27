@@ -9,27 +9,40 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
   # GET /pins
   # GET /pins.json
   def index
-    @newpin = Pin.last(:conditions => ["sex = 'Female'"], :order => "created_at desc", :limit => 1)
-    
-    if current_user
-    sex = current_user.sex
-    else
-    sex = "Female"
-    end 
 
-    views = View.user_views(current_user)
-    seen = views.map(&:pin_id) << -1
-    unseen = Pin.all_new_pins(seen, sex).count
-    
-    views_today = View.views_today(current_user)
-
-    @daily_counter = [20 - views_today.count, unseen ].min
-
-    if @daily_counter > 0
+    if current_user 
+      sex = current_user.sex
+      views = View.user_views(current_user)
+      seen = views.map(&:pin_id)
       @pins = Pin.new_pin(seen, sex)
-    else
-      @pins = nil
+      
+      yes_views_today = View.yes_views_today(current_user)
+      @seen_today = yes_views_today.map(&:pin_id)
+      @pins_today = Pin.user_pins(@seen_today).last(3).reverse
+    elsif session[:ranks]
+      t = TRUE
+      sex = "Female"
+      seen = [ ]
+      session[:ranks].each {|key, value| seen << key.to_i }
+      @pins = Pin.new_pin(seen, sex)
+
+      @pins_today = Pin.user_pins(seen).last(3).reverse
+            @seen = seen
+    else 
+      t = true
+      sex = "Female"
+      @pins = Pin.last(:conditions => ["active = ? AND sex = ?", t, sex], :order => "created_at desc", :limit => 1)
     end
+
+
+    # Establish daly counter to limmit user views to perdetermined number or make @pins == nil
+    unseen = Pin.all_new_pins(seen, sex).count  
+    views_today = View.views_today(current_user)
+    @daily_counter = [20 - views_today.count, unseen ].min
+    @daily_counter = 20
+  #  if @daily_counter <= 0
+  #    @pins = nil
+  #  end
     
     yes_views_today = View.yes_views_today(current_user)
     seen_today = yes_views_today.map(&:pin_id)
@@ -122,6 +135,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
   end
 
   def test
+
   end
 
 private

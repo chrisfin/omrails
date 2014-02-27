@@ -17,6 +17,7 @@ Omrails::Application.routes.draw do
   post "pages/shop"
   get "pages/shop"
   get "pins/test"
+  post "views/new_user_save"
   get "pages/create_admin"
 
   devise_for :users, controllers: { registrations: "registrations" }

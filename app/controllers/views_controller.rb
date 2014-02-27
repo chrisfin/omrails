@@ -10,14 +10,19 @@ end
 def create
 	@view = View.new
 	@view.user_id = params[:user_id]
-	@view.pin_id =  params[:pin_id]
-	@view.rank =  params[:rank]
+	@view.pin_id = params[:pin_id]
+	@view.rank = params[:rank]
 
 	if @view.save
         redirect_to root_path
     else
         render action: "new"
     end
+end
+
+def new_user_save
+    store_rank(params[:pin_id], params[:rank])
+    redirect_to root_path
 end
 
 def destroy
@@ -41,6 +46,15 @@ private
       def signed_in_admin
         unless current_user.try(:admin?)
           redirect_to pages_create_admin_path, notice: "User must be an Admin to access this page."
+        end
+      end
+
+      def store_rank(pin, rank)
+        if session[:ranks] == nil
+          session[:ranks] = Hash.new
+          session[:ranks].merge!(pin => rank)
+        else
+          session[:ranks].merge!(pin => rank)
         end
       end
 

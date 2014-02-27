@@ -12,6 +12,7 @@ gem 'bootstrap-will_paginate'
 group :production do
 	gem 'pg'
 end
+
 group :development do
 	gem 'sqlite3'	
 end
