@@ -37,7 +37,8 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
     else 
       sex = "Female"
       @pins = Pin.new_pin(seen, sex)
-      @daily_counter = 20
+      unseen = Pin.all_new_pins(seen, sex).count
+      @daily_counter = [max_pins, unseen ].min
     end
 
   # Resets @pins if user has seen more than 20 items in a day

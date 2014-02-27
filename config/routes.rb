@@ -20,7 +20,7 @@ Omrails::Application.routes.draw do
   post "views/new_user_save"
   get "pages/create_admin"
 
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   match 'users/:id' => 'users#show', as: :user
 
 
