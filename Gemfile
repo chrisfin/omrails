@@ -9,9 +9,7 @@ gem 'faker', '1.1.2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
-group :production do
-	gem 'pg'
-end
+
 group :development do
 	gem 'sqlite3'	
 end
