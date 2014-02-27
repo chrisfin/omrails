@@ -4,17 +4,20 @@ $btnPrimaryBackground: Green;
 
 @import 'bootstrap';
 @import 'bootstrap-responsive';
-@import url(http://fonts.googleapis.com/css?family=Vollkorn);
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
 
 html {
     height: 100%;
 }
 
 body {
-		font-family: 'Vollkorn', serif;
+		font-family: 'Lato', serif;
 		margin: 0;
-		background-image:url('grey.png');
+		background-color:#f1f4f6;
 		font-size: 18px;
+		font-weight: 300;
+		-webkit-font-smoothing:subpixel-antialiased;
+		color:#303643;
 }
 
 /* header */
@@ -36,7 +39,7 @@ body {
 /* footer */
 
 footer {
-  margin-top: 20px;
+  margin-top: 100px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #777777;
@@ -45,6 +48,8 @@ footer {
   width: 100%;
   clear: both;
   padding-bottom: 50px;
+  text-align:center;
+  padding-top:15px;
 }
 
 footer a {
@@ -56,8 +61,18 @@ footer a {
 
 
 .footer_right{
-  float: right;
-  padding-right: 60px;
+  display:block;
+  text-align:center;
+  margin-top:20px;
+}
+
+.footer_right a img{
+	opacity:0.2;
+	-webkit-transition:all 0.15s ease-out;
+}
+
+.footer_right a:hover img{
+	opacity:0.6;
 }
 
 .footer {
@@ -74,10 +89,12 @@ footer a {
 }
 
 .well_header{
-	font-size: 30px;
+	font-size: 25px;
 	text-align: center;
 	margin-top: 30px;
 	margin-bottom: 15px;
+	font-weight: 300;
+	color:#303643;
 }
 
 
@@ -95,18 +112,18 @@ footer a {
 
 .center_well {
  
- 	width: 710px ;
+ 	width: 830px ;
  	margin-left: auto;
   	margin-right: auto;
-  	height: 400px;
-	padding-left: 115px;
+  	height: auto;
+	overflow:hidden;
 }
 
 .info_well {
 	width: 100%;
   	margin-left: auto;
   	margin-right: auto;
-  	height: 400px;
+  	height: 520px;
   	padding-left: 200px;
   	padding-top: 30px;
 
@@ -114,12 +131,16 @@ footer a {
 
 .well{
 	margin-top: 10px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding:0px;
+	border:none;
 	float:left;
-	height: 400px;
-	width: 550px;
-	background-color: white;
+	height: 530px;
+	width: 830px;
+	background-color: transparent;
+	background-size: contain;
+	background-position: center center;
+	background-repeat:no-repeat;
+	box-shadow:none;
 
 }
 
@@ -150,27 +171,25 @@ footer a {
 
 .well img {
 	display: block;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	Margin-left:auto;
     Margin-right:auto;
     vertical-align: middle;
+    height:100%;
+    width:100%;
+    opacity:0; /** HACK **/	
 }
 
 .right_well_header {
 	float:right;
-	background-color: white;
 	text-align: center;
-	font-size: 18px;
+	font-size: 23px;
 	margin-top: 10px;
 	height: 20px;
-	width: 110px;
-	border: 1px solid #e3e3e3;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	width: auto;
+	display:block;
 	padding-top: 5px;
+	margin-bottom:10px;
+	display:none; /** HACK **/
 }
 
 .right_well_header a {
@@ -186,12 +205,12 @@ footer a {
 		width: 110px;
 		float: right;
 		margin-top: 2px;
-
+	display:none; /** HACK **/
 }
 
 .right_well{
 	float:right;
-	border: 1px solid #e3e3e3;
+
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -199,7 +218,7 @@ footer a {
 	width: 110px;
 	margin-top: 2px;
 	padding-bottom: 15px;
-	background-color: white;
+	display:none; /** HACK **/	
 }
 
 .right_well img {
@@ -213,6 +232,7 @@ footer a {
 .right_well a {
 
 	color: #777777;
+	
 &:hover {
   color: black;
   text-decoration: none;
@@ -245,7 +265,6 @@ footer a {
 
 .counter {
 	float: right;
-	border: 1px solid #e3e3e3;
 	height: 33px;
 	width: 45px;
 	-webkit-border-radius: 5px;
@@ -256,7 +275,7 @@ footer a {
 	color: #777777;
 	padding-top: 12px;
 	text-align:center;
-	background-color: white;
+	font-weight:500;
 
 }
 
@@ -373,3 +392,68 @@ footer a {
 }
 
 
+
+/* Button Styles */
+
+.btn-success, .btn-danger {
+	background-image:none;
+	border-color:transparent;
+	box-shadow:none;
+	font-size:21px;
+	text-shadow:none;
+	border-radius:0px;
+	-webkit-transition:all 0.15s ease-out;
+	width:220px;
+}
+
+.btn-success{
+	background-color:#f97b5e;
+	border-bottom:3px solid #d6674e
+}
+
+.btn-danger{
+	background-color:#59616f;
+	border-bottom:3px solid #434954;
+}
+
+.btn-success:hover{
+	background-color:#db6c52;
+	-webkit-transition:all 0.15s ease-out;
+}
+
+.btn-danger:hover{
+	background-color:#444b57;
+	-webkit-transition:all 0.15s ease-out;
+}
+
+
+
+/* Nav Bar */
+
+.navbar-inner{
+	box-shadow:none;
+	background-colo:#e3e5e7;
+}
+
+.navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner {
+	box-shadow:none;
+	background:none;
+}
+
+.navbar-static-top{
+	background-color:#303643;
+}
+
+.navbar .nav > li > a {
+	color:rgba(255,255,255,0.8);
+	text-shadow:none;
+	text-transform:capitalize;
+	letter-spacing:1px;
+	font-weight:300;
+	font-size:15px;
+	-webkit-transition:all 0.2s ease-out;
+}
+
+.navbar .nav > li > a:focus, .navbar .nav > li > a:hover {
+	color:rgba(255,255,255,1);
+}
