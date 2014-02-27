@@ -1,0 +1,27 @@
+
+<div class="well_header">
+	Catalog: Click on any image to make a purchase
+</div>
+
+
+<% if @user_pins %>
+	<% @user_pins.each do |pin| %>
+		<div class="shop_pic">
+			<div class="shop_pic_top">
+			  	<%= link_to (image_tag pin.image(:large)), pin.product_url, :target => "_blank" %>
+			</div>
+			<div class="shop_pic_low">
+						<%= link_to (image_tag pin.brand.image(:tiny)), pin.brand.url %>
+						<%= link_to number_to_currency( pin.price, precision: 2), pin %>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="shop">
+		<%= will_paginate @user_pins %>
+	</div>
+<% end %>
+
+<!-- Please call pinit.js only once per page -->
+<script type="text/javascript" async  data-pin-color="red" data-pin-hover="true" src="//assets.pinterest.com/js/pinit.js"></script>	
+

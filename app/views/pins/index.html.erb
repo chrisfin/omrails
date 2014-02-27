@@ -1,13 +1,10 @@
 
-<div id="pins">
-
 	<% if user_signed_in? %>
 		<% if @pins %>
-		<%= @seen_today %>
 		<div class="well_header">Browse Today's Style Selection</div>
-
-
-				<%= render @pins %>
+			
+			<%= render @pins %>
+		
 		<div class="row">
 				<div class="btn_well">
 					<div class="btn_well_left">
@@ -40,21 +37,21 @@
 				</div>
 			
 		</div>
-<!-- Please call pinit.js only once per page -->
-<script type="text/javascript" async  data-pin-color="red" data-pin-hover="true" src="//assets.pinterest.com/js/pinit.js"></script>
 
+	<%= render 'shop' %>	
+		
 		<% else %>
 			
-				<div class="well_header"> 
-					<p>Fleur is out of new stuff. Come back tomorrow!  |  
-					<%= link_to 'My Catalog', pages_shop_path %> </p>
-					<%= link_to image_tag("storefront.jpg"), pages_shop_path %> 
-				</div>	
-				
+		<div class="well_header"> 
+			<p>That's enough for now. You'll get another sytle playlist tomorrow! 
+		</div>	
+
+		<%= render 'shop' %>			
 		<% end %>
 	<% else %>
 
 	<%= render 'new_user' %>
+	<%= render 'shop' %>	
 
 	<% end %>
 

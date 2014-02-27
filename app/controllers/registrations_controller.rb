@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
 after_filter :send_welcome, :only => :create
+after_filter :views_create, :only => :create
 
 def create
-  @newpin = Pin.last(:order => "id desc", :limit => 1)
     build_resource(sign_up_params)
     if resource.save
       yield resource if block_given?
@@ -21,10 +21,22 @@ def create
     end
   end
 
-def send_welcome
-	
+def send_welcome	
 	UserMailer.welcome_email(@user).deliver unless @user.invalid?
 end
 
+def views_create
+  user = session[:ranks] 
+  if user.class == Hash
+    user.each do |pin, rank|
+      view = View.new
+      view.user_id = User.last.id
+      view.pin_id = pin.to_i
+      view.rank = rank.to_i
+      view.save
+    end
+  end
+   session.delete(:ranks)
+end
 
 end

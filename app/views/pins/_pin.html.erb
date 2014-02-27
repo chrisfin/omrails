@@ -1,41 +1,9 @@
 
 <div class="row">
   <div class="center_well">
-	   <div class="well">
-   		<%= link_to (image_tag pin.image(:large)), {:controller => "clicks", 
-                       :action => "create", 
-                       :place => "browse",
-                       :user_id => current_user.id, 
-                       :pin_id => @pins.id
-                       },
-                       :method => "post", :target => "_blank" %>	
+	   <div class="well" style="background-image: url('<%= pin.image %>')" onclick="window.open('<%= pin.product_url %>','mywindow');">
 	   </div>
 
-     <div class="right_well_header"><%= link_to "My Catalog", pages_shop_path %></div> 
-
-        <div class="right_well">
-          <% @pins_today.each do |pin| %>
-           <div class="right_well_image"> 
-          <%= link_to (image_tag pin.image(:thumb)), {:controller => "clicks", 
-                       :action => "create", 
-                       :place => "browse",
-                       :user_id => current_user.id, 
-                       :pin_id => pin.id
-                       },
-                       :method => "post", :target => "_blank" %>
-                       
-          <%=link_to '<i class="icon-heart"></i>'.html_safe + number_to_percentage(number_with_precision(pin.views.find(:all, :conditions => ["rank = 1"]).count.to_f / pin.views.count.to_f * 100), precision: 0), pin  %>
-          
-          </div>
-          <% end %>
-                    
-        </div>
-
-     <div class="right_well_footer"> 
-      <%=link_to '<i class="icon-white icon-tags"></i> Shop'.html_safe, pages_shop_path, class: "btn btn-block btn-info btn-medium" %>
-     </div>
-       
-      </div>
   </div>
 	
 </div>

@@ -10,43 +10,61 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
   # GET /pins.json
   def index
 
+# Establish daly counter to limmit user views to perdetermined number or make @pins == nil
+    seen = Array.new
+    max_pins = 20
+    
     if current_user 
+      # Get new pins for a signed in user   
       sex = current_user.sex
       views = View.user_views(current_user)
       seen = views.map(&:pin_id)
       @pins = Pin.new_pin(seen, sex)
-      
-      yes_views_today = View.yes_views_today(current_user)
-      @seen_today = yes_views_today.map(&:pin_id)
-      @pins_today = Pin.user_pins(@seen_today).last(3).reverse
-    elsif session[:ranks]
-      t = TRUE
+         
+      views_today = View.views_today(current_user)
+      unseen = Pin.all_new_pins(seen, sex).count
+      @daily_counter = [max_pins - views_today.count, unseen ].min
+    
+    # Get new pins for a non-registered user who has ranked an item.  
+    elsif session[:ranks].class == Hash
       sex = "Female"
-      seen = [ ]
       session[:ranks].each {|key, value| seen << key.to_i }
       @pins = Pin.new_pin(seen, sex)
-
-      @pins_today = Pin.user_pins(seen).last(3).reverse
-            @seen = seen
+      
+      views_today = seen
+      unseen = Pin.all_new_pins(seen, sex).count
+      @daily_counter = [20 - views_today.count, unseen ].min
     else 
-      t = true
       sex = "Female"
-      @pins = Pin.last(:conditions => ["active = ? AND sex = ?", t, sex], :order => "created_at desc", :limit => 1)
+      @pins = Pin.new_pin(seen, sex)
+      @daily_counter = 20
     end
 
+  # Resets @pins if user has seen more than 20 items in a day
+    if @daily_counter <= 0
+      @pins = nil
+    end
 
-    # Establish daly counter to limmit user views to perdetermined number or make @pins == nil
-    unseen = Pin.all_new_pins(seen, sex).count  
-    views_today = View.views_today(current_user)
-    @daily_counter = [20 - views_today.count, unseen ].min
-    @daily_counter = 20
-  #  if @daily_counter <= 0
-  #    @pins = nil
-  #  end
+  # Catalog of all pins user has Viewed and ranked Yes
+    yes = Array.new
     
-    yes_views_today = View.yes_views_today(current_user)
-    seen_today = yes_views_today.map(&:pin_id)
-    @pins_today = Pin.user_pins(seen_today).last(3).reverse
+    if current_user
+      yes_views = View.user_liked(current_user)
+      yes = yes_views.map(&:pin_id)
+      @user_pins = Pin.user_pins(yes)
+        # Paginates catalog
+    elsif session[:ranks].class == Hash
+      session[:ranks].each do |key, value| 
+        if value == "1"
+          yes << key.to_i
+        end
+      end
+      @user_pins = Pin.user_pins(yes)
+    else
+      @user_pins = Array.new
+    end
+ 
+    @user_pins = @user_pins.paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,78 +1,57 @@
-<div class="row">
-			<div class="well_header"> 
-			<%= @pins_today %>
-			<%= session[:ranks] %></br>
-			<%= @seen %>
-
-				Daily Playlists of Shoppable Fashion | <%= link_to "Sign Up", "#", :onclick => "$('#myModal').modal('show');" %> | <%= link_to "Learn More", about_path %></div>
-			
+<% if @pins %>	
+	<div class="row">
+		<div class="well_header"> 
+			Daily Playlists of Shoppable Fashion | <%= link_to "Sign Up", "#", :onclick => "$('#myModal').modal('show');" %> | <%= link_to "Learn More", about_path %>
 		</div>
-
-		<div class="row">		
-  			<div class="center_well">
-	   			<div class="well">
-   					<%= link_to (image_tag @pins.image(:large)), @pins.product_url, :target => "_blank" %>	
-    			</div>
-     
-     			<div class="right_well_header"><%= link_to "My Catalog", pages_shop_path %></div> 
-
-	        		<div class="right_well">
-	          			<% @pins_today.each do |pin| %>
-	           				<div class="right_well_image"> 
-	          					<%= link_to (image_tag pin.image(:thumb)), {:controller => "clicks", 
-		                       	:action => "create", 
-		                       	:place => "browse",
-		                       	:user_id => current_user.id, 
-		                       	:pin_id => pin.id
-		                       	},
-		                       	:method => "post", :target => "_blank" %>
-	          			</div>
-          			<% end %>                    
-        			</div>
-				<div class="right_well_footer"> 
-      			<%=link_to '<i class="icon-white icon-tag"></i> Shop'.html_safe, pages_shop_path, class: "btn btn-block btn-info btn-medium" %>
-     			</div>
-       
-      		</div>
-  		</div>
-	
-</div>
-
-		<div class="row">
-
-				<div class="btn_well">
-					<div class="btn_well_left">
-						<div class="btn_left"> 	
-
-	   					<%= link_to '<i class="icon-white icon-remove"></i> Less'.html_safe, {:controller => "views", 
-		                       :action => "new_user_save", 
-		                       :rank => 0, 
-		                       :pin_id => @pins.id
-		                       },
-		                       :method => "post", class: "btn btn-block btn-danger btn-large"  %>
-
-	   					<div class="center_small">(Not me... Show me something else.)</div>
-						</div>
-
-						<div class="counter">
-						20
-						</div>	
-
-					</div>
 				
-					<div class="btn_right">
-					<%= link_to '<i class="icon-white icon-heart"></i> Yes!'.html_safe, {:controller => "views", 
-		                       :action => "new_user_save", 
-		                       :rank => 1, 
-		                       :pin_id => @pins.id
-		                       },
-		                       :method => "post", class: "btn btn-block btn-success btn-large"  %> 	
-						
-						<div class="center_small">(Love it! Give me more like it.)</div>
-					</div>
+	</div>
+	
+	<%= render @pins %>
+
+	<div class="row">
+
+		<div class="btn_well">
+			<div class="btn_well_left">
+				<div class="btn_left"> 	
+
+					<%= link_to '<i class="icon-white icon-remove"></i> Less'.html_safe, {:controller => "views", 
+	                   :action => "new_user_save", 
+	                   :rank => 0, 
+	                   :pin_id => @pins.id
+	                   },
+	                   :method => "post", class: "btn btn-block btn-danger btn-large" %>
+
+	   				<div class="center_small">(Not me... Show me something else.)</div>
 				</div>
-			
-		</div>
+
+				<div class="counter">
+					<%= @daily_counter %>
+				</div>	
+
+			</div>
+				
+			<div class="btn_right">
+					<%= link_to '<i class="icon-white icon-heart"></i> Yes!'.html_safe, {:controller => "views", 
+		                :action => "new_user_save", 
+		                :rank => 1, 
+		                :pin_id => @pins.id},
+		                :method => "post", class: "btn btn-block btn-success btn-large" %> 	
+						
+					<div class="center_small">(Love it! Give me more like it.)</div>
+			</div>
+		</div>			
+	</div>
+
+<% else %>
+
+	<div class="well_header"> 
+		<p>That's enough for now. You'll get another style playlist tomorrow.</p>
+		<p><%= link_to "Sign Up", "#", :onclick => "$('#myModal').modal('show');" %> to save all the great style you found!</p>
+	</div>	
+
+<% end %>
+
+
 
 <!-- /Signup Modal -->
 <div class="modal fade" id="myModal">
