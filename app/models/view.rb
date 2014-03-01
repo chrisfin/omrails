@@ -7,7 +7,7 @@ class View < ActiveRecord::Base
 
 
   def self.user_views(user)
-  	self.find(:all, :conditions => ['user_id = ?', user])
+   where(user_id: user.id)
   end
 
 	def self.user_liked(user)

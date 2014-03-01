@@ -3,14 +3,15 @@
 		<% if @pins %>
 		<div class="well_header">Browse Today's Style Selection</div>
 			
+		<div id="main_well">
 			<%= render @pins %>
-		
+		</div>
 		<div class="row">
 				<div class="btn_well">
 					<div class="btn_well_left">
 						<div class="btn_left"> 	
-		   					<%= link_to '<i class="icon-white icon-remove"></i> Less'.html_safe, {:controller => "views", 
-		                       :action => "create", 
+		   					<%= link_to '<i class="icon-white icon-remove"></i> Less'.html_safe, {:controller => "pins", 
+		                       :action => "create_view", 
 		                       :rank => 0,
 		                       :user_id => current_user.id, 
 		                       :pin_id => @pins.id
@@ -19,7 +20,7 @@
 						</div>
 
 						<div class="counter">
-							<%=  @daily_counter %>
+							<%= render 'counter' %>
 						</div>
 					</div>
 					

@@ -1,4 +1,4 @@
-$boxes = $('<%= j render(@pins) %>')
+$boxes = $('<%= j render(@pins) %>');
 
 $('#pins').append( $boxes ).imagesLoaded( function(){
   $('#pins').masonry( 'reload');
@@ -9,4 +9,4 @@ $('#pins').append( $boxes ).imagesLoaded( function(){
   $('.pagination').remove();
 <% end %>
 
-$('#AJAX').html("<%= raw escape_javascript(render(:partial => pins/pin)) %>")
+

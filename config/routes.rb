@@ -19,6 +19,7 @@ Omrails::Application.routes.draw do
   get "pins/test"
   post "views/new_user_save"
   get "pages/create_admin"
+  post "pins/create_view"
 
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   match 'users/:id' => 'users#show', as: :user

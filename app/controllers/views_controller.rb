@@ -14,10 +14,13 @@ def create
 	@view.rank = params[:rank]
 
 	if @view.save
-        redirect_to root_path
-    else
-        render action: "new"
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
     end
+  else
+    render action: "new"
+  end
 end
 
 def new_user_save
