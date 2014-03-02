@@ -1,4 +1,4 @@
-class Pin < ActiveRecord::Base
+  class Pin < ActiveRecord::Base
   attr_accessible :description, :image, :image_remote_url, :product_url, :price, :brand_id, :brand, :item_type, :active, :sex
 
   has_attached_file :image, styles: { large: "400x400>", thumb: "100x100>"}
@@ -13,9 +13,9 @@ class Pin < ActiveRecord::Base
   validates :sex, presence: true
 
   belongs_to :user
-  has_many :views
+  has_many :views, dependent: :destroy
   has_many :users, :through => :views
-  has_many :clicks
+  has_many :clicks, dependent: :destroy
   has_many :users, :through => :clicks
   belongs_to :brand
 

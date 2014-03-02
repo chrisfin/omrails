@@ -126,10 +126,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
 
   def create_view
 
-    @view = View.new
-    @view.user_id = params[:user_id]
-    @view.pin_id = params[:pin_id]
-    @view.rank = params[:rank]
+    @view = current_user.views.build(pin_id: params[:pin_id], rank: params[:rank])
     
     if @view.save
 

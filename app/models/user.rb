@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
   validates :sex, presence: true
 
   has_many :pins
-  has_many :views
+  has_many :views, dependent: :destroy
   has_many :pins, :through => :views
-  has_many :clicks
+  has_many :clicks, dependent: :destroy
   has_many :pins, :through => :clicks
 
 def self.list_admins

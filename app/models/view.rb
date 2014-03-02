@@ -1,5 +1,5 @@
 class View < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :pin_id, :user_id, :rank
   belongs_to :user
   belongs_to :pin
 
