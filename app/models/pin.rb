@@ -55,6 +55,4 @@
     self.find(:all, :conditions => ["active = ?", b])
   end
 
-
-
 end

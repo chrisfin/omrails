@@ -41,6 +41,65 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
     end
   end 
 
+  def get_new_rank_pin
+    seen = Array.new
+    max_pins = 20
+    t = TRUE
+    if current_user 
+      # Get new pins for a signed in user   
+      sex = current_user.sex
+      views = View.user_views(current_user)
+      seen = views.map(&:pin_id)
+      @pins = Pin.new_pin(seen, sex)
+      #@pins = Pin.joins(:views).where("sex = 'Male'")
+      #offset = rand(Pin.count)
+      #@pins = Pin.first(:offset => offset)   
+
+      views_today = View.views_today(current_user)
+      unseen = Pin.all_new_pins(seen, sex).count
+      @daily_counter = [max_pins - views_today.count, unseen ].min
+    
+    # Get new pins for a non-registered user who has ranked an item.  
+    elsif session[:ranks].class == Hash
+      sex = "Female"
+      session[:ranks].each {|key, value| seen << key.to_i }
+      @pins = Pin.new_pin(seen, sex)
+      views_today = seen
+      unseen = Pin.all_new_pins(seen, sex).count
+      @daily_counter = [20 - views_today.count, unseen ].min
+    else 
+      sex = "Female"
+      @pins = Pin.new_pin(seen, sex)
+      unseen = Pin.all_new_pins(seen, sex).count
+      @daily_counter = [max_pins, unseen ].min
+    end
+  
+    # Resets @pins if user has seen more than 20 items in a day
+    if @daily_counter <= 0
+      @pins = nil
+    end
+  end
+
+  def get_catalog
+     # Catalog of all pins user has Viewed and ranked Yes
+    yes = Array.new
+    
+    if current_user
+      yes_views = View.user_liked(current_user)
+      yes = yes_views.map(&:pin_id)
+      @user_pins = Pin.user_pins(yes)
+    elsif session[:ranks].class == Hash
+      session[:ranks].each do |key, value| 
+        if value == "1"
+          yes << key.to_i
+        end
+      end
+      @user_pins = Pin.user_pins(yes)
+    else
+      @user_pins = Array.new
+    end
+  end
+
   # GET /pins/1
   # GET /pins/1.json
   def show
@@ -141,64 +200,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
       
   end
 
-  def get_new_rank_pin
-    seen = Array.new
-    max_pins = 20
-    t = TRUE
-    if current_user 
-      # Get new pins for a signed in user   
-      sex = current_user.sex
-      views = View.user_views(current_user)
-      seen = views.map(&:pin_id)
-      @pins = Pin.new_pin(seen, sex)
-      #@pins = Pin.joins(:views).where("sex = 'Male'")
-      #offset = rand(Pin.count)
-      #@pins = Pin.first(:offset => offset)   
-
-      views_today = View.views_today(current_user)
-      unseen = Pin.all_new_pins(seen, sex).count
-      @daily_counter = [max_pins - views_today.count, unseen ].min
-    
-    # Get new pins for a non-registered user who has ranked an item.  
-    elsif session[:ranks].class == Hash
-      sex = "Female"
-      session[:ranks].each {|key, value| seen << key.to_i }
-      @pins = Pin.new_pin(seen, sex)
-      views_today = seen
-      unseen = Pin.all_new_pins(seen, sex).count
-      @daily_counter = [20 - views_today.count, unseen ].min
-    else 
-      sex = "Female"
-      @pins = Pin.new_pin(seen, sex)
-      unseen = Pin.all_new_pins(seen, sex).count
-      @daily_counter = [max_pins, unseen ].min
-    end
   
-    # Resets @pins if user has seen more than 20 items in a day
-    if @daily_counter <= 0
-      @pins = nil
-    end
-  end
-
-  def get_catalog
-     # Catalog of all pins user has Viewed and ranked Yes
-    yes = Array.new
-    
-    if current_user
-      yes_views = View.user_liked(current_user)
-      yes = yes_views.map(&:pin_id)
-      @user_pins = Pin.user_pins(yes)
-    elsif session[:ranks].class == Hash
-      session[:ranks].each do |key, value| 
-        if value == "1"
-          yes << key.to_i
-        end
-      end
-      @user_pins = Pin.user_pins(yes)
-    else
-      @user_pins = Array.new
-    end
-  end
 
 private
 

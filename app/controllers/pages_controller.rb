@@ -79,7 +79,7 @@ class PagesController < ApplicationController
   def allusers
     t = true
     f = false
-     @users = User.find(:all, :conditions => ["admin = ?", f], :order => "last_sign_in_at desc")
+    @users = User.find(:all, :conditions => ["admin = ?", f], :order => "last_sign_in_at desc")
     @admins = User.find(:all, :conditions => ["admin = ?", t], :order => "last_sign_in_at desc")
   end
 

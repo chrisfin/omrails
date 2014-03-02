@@ -1,0 +1,35 @@
+<table class="table_spacer">
+	<tr>
+		<td>ID </td>
+		<td>NAME </td>
+		<td>EMAIL </td>
+		<td>SEX </td>
+		<td>Views</td>
+		<td>%Yes</td>
+		<td>Clicks</td>
+		<td>% Shop</td>
+		<td>User Created</td>
+		<td>Last View</td>
+	</tr>
+	
+		<% user.each do |user| %>
+  		<tr>
+			<td><%= user.id %> </td>
+			<td><%= user.name %> </td>
+			<td><%= user.email %> </td>
+			<td><%= user.sex %> </td>
+			<td><%= user.views.count %> </td>
+			<td><%= number_to_percentage(number_with_precision(user_percent_views(user, 1)), precision: 0) %>
+			<td><%= user.clicks.count %> </td>
+			<td><%= number_to_percentage(number_with_precision(user.clicks.find(:all, :conditions => ["place = 'shop'"]).count.to_f / user.clicks.count.to_f * 100), precision: 0)  %>
+
+			<td><%= user.created_at.to_formatted_s(:short) %> 
+				
+			<% if View.last_view(user) %>
+			<td><%= View.last_view(user).created_at.to_formatted_s(:short) %> 
+			<% end %>
+
+				</td>
+			</tr>
+		<% end %>
+		</table>
