@@ -3,10 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery -> 
-	$('#shop').ImagesLoaded ->
-		$('#shop').masonry 
+  $('#shop').imagesLoaded ->
+    $('#shop').masonry  ->
       itemSelector: ".shop_pic"
-      columnWidth: 410
+
 
   if $('.pagination').length
     $(window).scroll ->

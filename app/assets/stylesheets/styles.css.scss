@@ -157,8 +157,6 @@ footer a {
 
 }
 
-
-
 .show_info {
 	margin-top: 10px;
 	padding: 15px;
@@ -215,17 +213,8 @@ footer a {
 }
 }
 
-.right_well_footer {
-		height: 25px;
-		width: 110px;
-		float: right;
-		margin-top: 2px;
-	display:none; /** HACK **/
-}
-
 .right_well{
 	float:right;
-
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -263,7 +252,7 @@ footer a {
 
 .btn_well{
 	Margin-left:auto;
-   Margin-right:auto;
+    Margin-right:auto;
 	width: 550px;
 	background-color: white;
 }
@@ -303,7 +292,6 @@ footer a {
 	font-size: 30px;
 	margin-top: 25px;
 	margin-bottom: 25px;
-	font-family: 'Crimson Text', serif;
 }
 
 .center_text {
@@ -353,18 +341,28 @@ footer a {
 
 .shop_pic {
 	float:left;
-	margin: 10px 10px 20px 10px ;
+	margin-left: 5px;
+	margin-right: 5px;
 	padding: 5px;
-	height: auto;
+	margin-bottom: 10px;
+	width:300px;
+	height: 355px;
+	background-color: white;
 }
 
-.shop_pic_top img{
-	display: block;
-	float:left;
-	padding-bottom: 5px;
-	width:290px;
-
+.shop_pic_top {
+	margin-bottom: 5px;
+	padding:0px;
+	height: 320px;
+	background-color: transparent;
+	background-size: contain;
+	background-position: center center;
+	background-repeat:no-repeat;
+	box-shadow:none;
+	-webkit-transition:all 0.15s ease-out;
+	cursor:pointer;
 }
+
 .shop_pic_low{
 	text-align: right;
 }
@@ -403,8 +401,6 @@ footer a {
 .table_spacer td{
 	width: 175px;
 }
-
-
 
 /* Button Styles */
 
@@ -448,7 +444,6 @@ footer a {
 	width:100%;
 	background-color:#f1f4f6;
 }
-
 
 /* Nav Bar */
 

@@ -1,0 +1,20 @@
+<% if user_signed_in? %>
+ Logged in as <strong><%= current_user.email %></strong>.
+ <%= link_to 'Edit profile', edit_user_registration_path %> |
+ <%= link_to 'Authentications', authentications_path %> |
+ <%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %>
+ <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+
+ <p><strong>@<%= "All users #{@user} follows:" %></strong> </p>
+ 
+ <% @friends.each do |f| %>
+ 	<p> <%= f.screen_name %></p>
+ <% end %>
+<% else %>
+ <p><%= link_to "Connect Twitter Account", user_omniauth_authorize_path(:twitter) %></p>
+ <p><strong><%= "#{@user}'s last tweet:" %></strong> <%= @tweet %></p>
+
+
+<% end %>
+
+

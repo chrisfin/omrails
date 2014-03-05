@@ -2,7 +2,6 @@
 	<% if user_signed_in? %>
 		<% if @pins %>
 		<div class="well_header">Browse Today's Style Selection</div>
-			
 		<div id="main_well">
 			<%= render @pins %>
 		</div>
@@ -34,7 +33,8 @@
 		<% else %>
 			
 		<div class="well_header"> 
-			<p>That's enough for now. You'll get another sytle playlist tomorrow! 
+			<p>That's enough for now. You'll get another sytle playlist tomorrow! </p>
+			
 		</div>	
 
 		<%= render 'shop' %>			

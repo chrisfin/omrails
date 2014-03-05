@@ -26,9 +26,7 @@
 		
 		<% @pins.each do |pin| %>
 			<div class="shop_pic">
-		  		<div class="shop_pic_top">
-		  		<%= link_to (image_tag pin.image(:large)), clicks_path(place: 'shop', pin_id: pin.id),
-		                       :method => "post", :target => "_blank" %>
+		  		<div class="shop_pic_top" style="background-image: url('<%= pin.image %>')" onclick="window.open('<%= pin.product_url %>','mywindow');">
 				</div>
 				<div class="shop_pic_low">
 					<%= link_to (image_tag pin.brand.image(:tiny)), pin.brand.url %>

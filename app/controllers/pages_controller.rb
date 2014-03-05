@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-  before_filter :signed_in_user, except: [:about, :mobile]
-  before_filter :signed_in_admin, except: [:about,  :mobile, :shop, :create_admin, :authenticate]
-  before_filter :admin_user,     only: :destroy
+  before_filter :signed_in_user, except: [:about, :mobile, :test]
+  before_filter :signed_in_admin, except: [:about,  :mobile, :shop, :create_admin, :authenticate, :test]
+  before_filter :admin_user, only: :destroy
 
   def control
   	t = true
@@ -104,7 +104,17 @@ class PagesController < ApplicationController
       @price_placeholder = "Enter Price"
     end
      @pins = @pins.paginate(:page => params[:page], :per_page => 20)
-end
+  end
+
+  def test
+    #@pins = Pin.joins(:views => :user).where("views.sex = ? and views.active = ? and users.id not in (?)", current_user.sex, true, [current_user.id])
+    twitter_client
+    @user = "@jventi"
+    @tweet = @client.user_timeline(@user).first.text
+    #@friends = @client.friends(@user)
+    
+  end
+
 
   private
 
@@ -123,5 +133,14 @@ end
       def admin_user
         redirect_to(root_path) unless current_user.admin?
       end
+
+    def twitter_client
+      @client = Twitter::REST::Client.new do |config|
+        config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
+        config.consumer_secret     = ENV["TWITTER_CONSUMER_SECRET"]
+        config.access_token        = "1195067634-B7v3vQwKrrjanVsfWhYUJAaEKUtMhngind2b3DO"
+        config.access_token_secret = "OrdjE8HjvCkAYIl2ySptFN7sjO3UKWBGbmLLjEUV51Bw4"
+      end
+    end
 
 end

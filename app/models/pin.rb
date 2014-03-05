@@ -25,15 +25,27 @@
   	super
   end
   
+  def self.random_new_pin(pin_ids, sex, brand=nil, item=nil)
+      b = TRUE
+      pin_ids << -1
+
+      if brand && item
+       self.find(:first, :conditions => ["sex = ? AND active = ? AND id not in (?) AND item_type != ? AND brand_id != ?", sex, b, pin_ids, item, brand], :order => "created_at desc" )
+      else 
+        self.find(:first, :conditions => ["sex = ? AND active = ? AND id not in (?)", sex, b, pin_ids], :order => "created_at desc" )
+      end
+
+  end
+
   def self.new_pin(pin_ids, sex)
       b = TRUE
       pin_ids << -1
-      self.find(:first, :conditions => ["sex = ? AND active = ? AND id not in (?)", sex, b, pin_ids], :order => "created_at desc" )
+      self.find( :first, :conditions => ["sex = ? AND active = ? AND id not in (?)", sex, b, pin_ids], :order => "created_at desc")
   end
 
   def self.user_pins(pin_ids)
       b = TRUE
-      self.find(:all, :conditions => ["active = ? AND id in (?)", b, pin_ids], :order => "created_at desc")
+      pins = self.find(:all, :conditions => ["active = ? AND id in (?)", b, pin_ids])
   end
 
   def self.percent_yes

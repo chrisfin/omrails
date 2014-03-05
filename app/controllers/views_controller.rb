@@ -25,7 +25,8 @@ end
 
 def new_user_save
     store_rank(params[:pin_id], params[:rank])
-    redirect_to root_path
+    @pin = Pin.find(params[:pin_id])
+    redirect_to root_path(item: @pin.item_type, brand: @pin.brand_id)
 end
 
 def destroy
@@ -53,11 +54,11 @@ private
       end
 
       def store_rank(pin, rank)
-        if session[:ranks] == nil
-          session[:ranks] = Hash.new
-          session[:ranks].merge!(pin => rank)
+        if  session[:ranks] == nil
+            session[:ranks] = Hash.new
+            session[:ranks].merge!(pin => rank)
         else
-          session[:ranks].merge!(pin => rank)
+            session[:ranks].merge!(pin => rank)
         end
       end
 

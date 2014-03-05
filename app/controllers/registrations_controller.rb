@@ -19,24 +19,33 @@ def create
       clean_up_passwords resource
       respond_with resource
     end
+    session[:omniauth] = nil unless @user.new_record?
   end
 
-def send_welcome	
-	UserMailer.welcome_email(@user).deliver unless @user.invalid?
-end
-
-def views_create
-  user = session[:ranks] 
-  if user.class == Hash
-    user.each do |pin, rank|
-      view = View.new
-      view.user_id = User.last.id
-      view.pin_id = pin.to_i
-      view.rank = rank.to_i
-      view.save
+  def build_resource(*args)
+  super
+    if session[:omniauth]
+      @user.apply_omniauth(session[:omniauth])
+      @user.valid?
     end
   end
-   session.delete(:ranks)
-end
+
+  def send_welcome	
+	 UserMailer.welcome_email(@user).deliver unless @user.invalid?
+  end
+
+  def views_create
+    user = session[:ranks] 
+    if user.class == Hash
+      user.each do |pin, rank|
+        view = View.new
+        view.user_id = User.last.id
+        view.pin_id = pin.to_i
+        view.rank = rank.to_i
+        view.save
+      end
+    end
+     session.delete(:ranks)
+  end
 
 end

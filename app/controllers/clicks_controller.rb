@@ -2,7 +2,7 @@ class ClicksController < ApplicationController
 
 def create
 	@click = current_user.clicks.build(pin_id: params[:pin_id], place: params[:place])
-	@pin = Pin.find(:first, :conditions => ["id = ?", @click.pin_id])
+	@pin = Pin.first(id: @click.pin_id)
 
 	if @click.save
         redirect_to @pin.product_url

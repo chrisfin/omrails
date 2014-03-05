@@ -8,6 +8,10 @@ gem 'aws-sdk'
 gem 'faker', '1.1.2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'omniauth-twitter'
+gem "twitter", "~> 5.7.1"
+gem 'nifty-generators'
+gem 'figaro'
 
 group :production do
 	gem 'pg'

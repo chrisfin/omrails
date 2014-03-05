@@ -44,14 +44,15 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
   def get_new_rank_pin
     seen = Array.new
     max_pins = 20
-    t = TRUE
+    b = TRUE
     if current_user 
       # Get new pins for a signed in user   
       sex = current_user.sex
-      views = View.user_views(current_user)
+      views = current_user.views
       seen = views.map(&:pin_id)
-      @pins = Pin.new_pin(seen, sex)
-      #@pins = Pin.joins(:views).where("sex = 'Male'")
+      @pins = Pin.random_new_pin(seen, sex, params[:brand], params[:item])
+      #@pins = Pin.joins(:views => :users).where("views.sex = ? and views.active = ? and users.id not in (?)", current_user.sex, true, [current_user.id]).explain
+
       #offset = rand(Pin.count)
       #@pins = Pin.first(:offset => offset)   
 
@@ -63,13 +64,14 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
     elsif session[:ranks].class == Hash
       sex = "Female"
       session[:ranks].each {|key, value| seen << key.to_i }
-      @pins = Pin.new_pin(seen, sex)
+      @pins = Pin.random_new_pin(seen, sex, params[:brand], params[:item])
       views_today = seen
       unseen = Pin.all_new_pins(seen, sex).count
       @daily_counter = [20 - views_today.count, unseen ].min
     else 
       sex = "Female"
       @pins = Pin.new_pin(seen, sex)
+
       unseen = Pin.all_new_pins(seen, sex).count
       @daily_counter = [max_pins, unseen ].min
     end
@@ -88,6 +90,7 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
       yes_views = View.user_liked(current_user)
       yes = yes_views.map(&:pin_id)
       @user_pins = Pin.user_pins(yes)
+      #@user_pins = @user_pins.all.sort { |x,y| x.views.created_at <=> y.views.created_at }
     elsif session[:ranks].class == Hash
       session[:ranks].each do |key, value| 
         if value == "1"
@@ -180,20 +183,18 @@ ITEM_TYPE_LIST = ["Shoes", "Accessories", "Tops", "Shirts", "Sweaters", "Sweatsh
   end
 
   def test
-
+    @pins = Pin.joins(:views => :user).where("views.sex = ? and views.active = ? and users.id not in (?)", current_user.sex, true, [current_user.id])
   end
 
   def create_view
-
     @view = current_user.views.build(pin_id: params[:pin_id], rank: params[:rank])
+    @pin = Pin.find(params[:pin_id])
     
     if @view.save
-
       respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html { redirect_to root_path(item: @pin.item_type, brand: @pin.brand_id) }
         #format.js
       end
-
     else
       render action: "new"
     end
