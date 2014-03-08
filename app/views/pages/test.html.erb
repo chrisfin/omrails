@@ -6,13 +6,13 @@
  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
 
  <p><strong>@<%= "All users #{@user} follows:" %></strong> </p>
- 
- <% @friends.each do |f| %>
- 	<p> <%= f.screen_name %></p>
+ <%= @all_friends.count %>
+ <% @all_friends.each do |f| %>
+ 	<p> <%= f %></p>
  <% end %>
 <% else %>
  <p><%= link_to "Connect Twitter Account", user_omniauth_authorize_path(:twitter) %></p>
- <p><strong><%= "#{@user}'s last tweet:" %></strong> <%= @tweet %></p>
+
 
 
 <% end %>

@@ -1,7 +1,6 @@
   <div class="row">
     <div class="info_well">
-      <div class="well">
-        <%= link_to (image_tag @pin.image(:large)), @pin.product_url, :target => "_blank" %>  
+      <div class="well" style="background-image: url('<%= @pin.image %>')" onclick="window.open('<%= @pin.product_url %>','mywindow');">
       </div>
       <div class="show_info">
         <%= link_to (image_tag @pin.brand.image(:small)), @pin.brand.url %>

@@ -178,7 +178,7 @@ footer a {
 .new_pin {
 	margin-top: -10px;
 	padding: 7px;
-	background-color: black;
+	background-color: #303643;
 	color: white;
 }
 
@@ -413,6 +413,8 @@ footer a {
 	border-radius:0px;
 	-webkit-transition:all 0.15s ease-out;
 	width:220px;
+	Margin-left:auto;
+    Margin-right:auto;
 }
 
 .btn-success{
@@ -504,3 +506,12 @@ footer a {
 	text-align:center;
 	color:#444b57;
 }
+
+/*** Temperary Fix for container width=100% error for login, sign up, about ***/
+.temp_set_inner{
+	width:80%;
+	margin:0 auto;
+	overflow:hidden;
+
+}
+

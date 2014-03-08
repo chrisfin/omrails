@@ -108,12 +108,44 @@ class PagesController < ApplicationController
 
   def test
     #@pins = Pin.joins(:views => :user).where("views.sex = ? and views.active = ? and users.id not in (?)", current_user.sex, true, [current_user.id])
-    twitter_client
-    @user = "@jventi"
-    @tweet = @client.user_timeline(@user).first.text
-    #@friends = @client.friends(@user)
-    
+    @user = "chrisjfin"
+
+    @all_friends = fetch_all_friends("chrisjfin")
   end
+ 
+def fetch_all_friends(twitter_username, max_attempts = 100)
+  # in theory, one failed attempt will occur every 15 minutes, so this could be long-running
+  # with a long list of friends
+  num_attempts = 0
+  client = twitter_client
+  myfile = File.new("#{twitter_username}_friends_list.txt", "w")
+  running_count = 0
+  cursor = -1
+  while (cursor != 0) do
+    begin
+      num_attempts += 1
+      # 200 is max, see https://dev.twitter.com/docs/api/1.1/get/friends/list
+      friends = client.friends(twitter_username, {:cursor => cursor, :count => 200} )
+      friends.each do |f|
+        running_count += 1
+        myfile.puts "\"#{running_count}\",\"#{f.name.gsub('"','\"')}\",\"#{f.screen_name}\",\"#{f.url}\",\"#{f.followers_count}\",\"#{f.location.gsub('"','\"').gsub(/[\n\r]/," ")}\",\"#{f.created_at}\",\"#{f.description.gsub('"','\"').gsub(/[\n\r]/," ")}\",\"#{f.lang}\",\"#{f.time_zone}\",\"#{f.verified}\",\"#{f.profile_image_url}\",\"#{f.website}\",\"#{f.statuses_count}\",\"#{f.profile_background_image_url}\",\"#{f.profile_banner_url}\""
+      end
+      puts "#{running_count} done"
+      cursor = friends.next_cursor
+      break if cursor == 0
+    rescue Twitter::Error::TooManyRequests => error
+      if num_attempts <= max_attempts
+        cursor = friends.next_cursor if friends && friends.next_cursor
+        puts "#{running_count} done from rescue block..."
+        puts "Hit rate limit, sleeping for #{error.rate_limit.reset_in}..."
+        sleep error.rate_limit.reset_in
+        retry
+      else
+        raise
+      end
+    end
+  end
+end  
 
 
   private
