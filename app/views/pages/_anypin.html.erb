@@ -27,7 +27,7 @@
             <tr>
                 <td>Sex: <%= pin.sex %></td>
                 <td>Total Clicks: <%= pin.clicks.count %></td>
-                <td>% Shop: <%= number_to_percentage(number_with_precision(pin_percent_views(pin, 'shop')), precision: 0) %></td>
+                <td>% Shop: <%= number_to_percentage(number_with_precision(pin_percent_clicks(pin, 'shop')), precision: 0) %></td>
             </tr>
             
 

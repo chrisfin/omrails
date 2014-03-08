@@ -20,6 +20,6 @@ def resource_name
   def pin_percent_clicks(pin, place)
     click_pins = pin.clicks.count(:conditions => ["place = ?", place]).to_f
     all_pins = pin.clicks.count.to_f
-    return (rank_pins / all_pins) * 100
+    return (click_pins / all_pins) * 100
   end
 end
