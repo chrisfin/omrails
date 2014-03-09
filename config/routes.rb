@@ -4,6 +4,7 @@ Omrails::Application.routes.draw do
   resources :clicks
   resources :views
   resources :authentications
+  resources :friends
 
   root :to => 'pins#index' 
 
@@ -21,6 +22,7 @@ Omrails::Application.routes.draw do
   get "pages/create_admin"
   post "pins/create_view"
   get "pages/test"
+  get "pages/twitter_test2"
 
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions", omniauth_callbacks: "authentications" }
   match 'users/:id' => 'users#show', as: :user

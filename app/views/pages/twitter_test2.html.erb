@@ -1,0 +1,6 @@
+<p>User_name: <%= current_user.name %></p>
+<p>Twitter: <%= current_user.authentications.where(provider: "twitter").first.uid %></p>
+<p>Twitter Friends:</p>
+<% current_user.friends.each do |f| %>
+<p> <%= f.screen_name %> | <%= f.id %> | <%= f.location %> | <%= image_tag( f.profile_image_url ) %></p>
+<% end %>

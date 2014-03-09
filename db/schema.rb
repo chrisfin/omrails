@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140304003821) do
+ActiveRecord::Schema.define(:version => 20140309185905) do
 
   create_table "authentications", :force => true do |t|
     t.datetime "created_at",   :null => false
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(:version => 20140304003821) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.text     "place"
+  end
+
+  create_table "friends", :force => true do |t|
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "authentication_id"
+    t.string   "uid"
+    t.string   "screen_name"
+    t.string   "location"
+    t.string   "profile_image_url"
   end
 
   create_table "pins", :force => true do |t|

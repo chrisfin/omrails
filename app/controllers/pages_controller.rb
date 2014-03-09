@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  before_filter :signed_in_user, except: [:about, :mobile, :test]
-  before_filter :signed_in_admin, except: [:about,  :mobile, :shop, :create_admin, :authenticate, :test]
+  before_filter :signed_in_user, except: [:about, :mobile] #, :test, :twitter_test2
+  before_filter :signed_in_admin, except: [:about,  :mobile, :shop, :create_admin, :authenticate] #, :test, :twitter_test2
   before_filter :admin_user, only: :destroy
 
   def control
@@ -107,10 +107,13 @@ class PagesController < ApplicationController
   end
 
   def test
-    #@pins = Pin.joins(:views => :user).where("views.sex = ? and views.active = ? and users.id not in (?)", current_user.sex, true, [current_user.id])
-    @user = "chrisjfin"
-
-    @all_friends = fetch_all_friends("chrisjfin")
+    @client = twitter_client
+    @all_friends = @client.friends.take(100)
+    authentication = current_user.authentications.where(provider: "twitter").first.id   
+    @all_friends.each do |friend|
+      new_friend = Friend.new(authentication_id: authentication, uid: friend.id, location: friend.location, screen_name: friend.screen_name, profile_image_url: friend.profile_image_url.to_s) 
+      new_friend.save
+    end
   end
  
 def fetch_all_friends(twitter_username, max_attempts = 100)
@@ -118,7 +121,6 @@ def fetch_all_friends(twitter_username, max_attempts = 100)
   # with a long list of friends
   num_attempts = 0
   client = twitter_client
-  myfile = File.new("#{twitter_username}_friends_list.txt", "w")
   running_count = 0
   cursor = -1
   while (cursor != 0) do
@@ -128,7 +130,7 @@ def fetch_all_friends(twitter_username, max_attempts = 100)
       friends = client.friends(twitter_username, {:cursor => cursor, :count => 200} )
       friends.each do |f|
         running_count += 1
-        myfile.puts "\"#{running_count}\",\"#{f.name.gsub('"','\"')}\",\"#{f.screen_name}\",\"#{f.url}\",\"#{f.followers_count}\",\"#{f.location.gsub('"','\"').gsub(/[\n\r]/," ")}\",\"#{f.created_at}\",\"#{f.description.gsub('"','\"').gsub(/[\n\r]/," ")}\",\"#{f.lang}\",\"#{f.time_zone}\",\"#{f.verified}\",\"#{f.profile_image_url}\",\"#{f.website}\",\"#{f.statuses_count}\",\"#{f.profile_background_image_url}\",\"#{f.profile_banner_url}\""
+
       end
       puts "#{running_count} done"
       cursor = friends.next_cursor
@@ -146,7 +148,6 @@ def fetch_all_friends(twitter_username, max_attempts = 100)
     end
   end
 end  
-
 
   private
 

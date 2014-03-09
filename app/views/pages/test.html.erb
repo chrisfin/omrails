@@ -5,16 +5,13 @@
  <%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %>
  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
 
- <p><strong>@<%= "All users #{@user} follows:" %></strong> </p>
- <%= @all_friends.count %>
- <% @all_friends.each do |f| %>
- 	<p> <%= f %></p>
- <% end %>
+	 <%= @all_friends.count %>
+	 <% @all_friends.each do |f| %>
+	 	<p> <%= f.screen_name %> | <%= f.id %> | <%= f.location %> | <%= f.profile_image_url %></p>
+	 <% end %>	
+
 <% else %>
- <p><%= link_to "Connect Twitter Account", user_omniauth_authorize_path(:twitter) %></p>
-
-
-
+  
 <% end %>
 
 

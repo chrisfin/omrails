@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :clicks, dependent: :destroy
   has_many :pins, :through => :clicks
   has_many :authentications
+  has_many :friends, :through => :authentications
 
   def self.list_admins
     t = true
